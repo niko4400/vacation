@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="application">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="vacation-ejb.jar" deploy-path="/" handle="module:/resource/vacation-ejb/vacation-ejb">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="vacation-ejbClient.jar" deploy-path="/" handle="module:/resource/vacation-ejbClient/vacation-ejbClient">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="vacation-web.war" deploy-path="/" handle="module:/resource/vacation-web/vacation-web">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="vacation-model.jar" deploy-path="/lib" handle="module:/resource/vacation-model/vacation-model">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="vacation-api.jar" deploy-path="/lib" handle="module:/resource/vacation-api/vacation-api">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>
