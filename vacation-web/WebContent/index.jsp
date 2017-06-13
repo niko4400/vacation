@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-dawid rylowicz gnom
+to był tylko test...
 </body>
 </html>
