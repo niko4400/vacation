@@ -45,4 +45,11 @@
 		<nature>org.jboss.tools.cdi.core.cdinature</nature>
 		<nature>org.hibernate.eclipse.console.hibernateNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>required</name>
+			<type>2</type>
+			<location>D:/Programy/jeeworkspace/gittmp/lib/required</location>
+		</link>
+	</linkedResources>
 </projectDescription>
