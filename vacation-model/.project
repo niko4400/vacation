@@ -47,6 +47,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>lib</name>
+			<type>2</type>
+			<location>D:/Programy/jeeworkspace/gittmp/vacation/lib</location>
+		</link>
+		<link>
 			<name>required</name>
 			<type>2</type>
 			<location>D:/Programy/jeeworkspace/gittmp/lib/required</location>
