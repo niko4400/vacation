@@ -5,6 +5,7 @@
 		<jta-data-source>java:jboss/datasources/vacationDS</jta-data-source>
 		<class>application.vacation.model.User</class>
 		<class>application.vacation.model.Vacation</class>
+		<class>application.vacation.model.VacationDay</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.archive.autodetection" value="class" />
