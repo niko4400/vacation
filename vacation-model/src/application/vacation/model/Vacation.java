@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+
+//TODO Query
 /**
  * Entity implementation class for Entity: Vacation
  *
