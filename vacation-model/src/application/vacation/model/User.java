@@ -4,23 +4,28 @@ import java.io.Serializable;
 import java.lang.String;
 import javax.persistence.*;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
 /**
  * Entity implementation class for Entity: User
  *
  */
 @Entity
 
-@IdClass(UserPK.class)
 public class User implements Serializable {
 
 	   
 	@Id
-	private int id;   
-	@Id
-	private String name;   
-	@Id
-	private String password;   
-	@Id
+	@GeneratedValue( strategy=GenerationType.AUTO )
+	private int id;
+	private String login;
+	private String password;
+	private String name;
 	private String title;
 	private static final long serialVersionUID = 1L;
 
@@ -34,12 +39,12 @@ public class User implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}   
-	public String getName() {
-		return this.name;
+	public String getLogin() {
+		return this.login;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLogin(String login) {
+		this.login = login;
 	}   
 	public String getPassword() {
 		return this.password;
@@ -47,6 +52,13 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}   
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}   
 	public String getTitle() {
 		return this.title;
