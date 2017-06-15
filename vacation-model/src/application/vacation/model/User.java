@@ -15,6 +15,16 @@ import javax.persistence.NamedQuery;
  * Entity implementation class for Entity: User
  *
  */
+
+@NamedQueries({
+	@NamedQuery(
+			name = "User.findAllOrdered", 
+			query = "SELECT user FROM User user ORDER BY user.name ASC"),
+	@NamedQuery(
+			name = "User.findByLastName", 
+			query = "SELECT user FROM User user WHERE user.name = :name")
+})
+
 @Entity
 
 public class User implements Serializable {
