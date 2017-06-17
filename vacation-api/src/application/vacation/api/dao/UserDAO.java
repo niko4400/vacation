@@ -7,7 +7,10 @@ import application.vacation.model.User;
 
 public interface UserDAO {
 	User findUser(Long id);
-	
-	//TODO 
+	List<User> findUserToLogin(User user);
+	List<User> findAllUsers();
+	User mergeUser(User user);
+	void persistUser(User user);
+	void removeUser(User user);
 
 }
