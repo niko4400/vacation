@@ -1,48 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	version="3.1">
-	<display-name>Serwis Urlopowy</display-name>
-	<servlet>
-		<servlet-name>Faces Servlet</servlet-name>
-		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>/faces/*</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.jsf</url-pattern>
-	</servlet-mapping>
-
-	<context-param>
-		<param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
-		<param-value>6LeSNCMUAAAAAIgCRW-S0z4Aoa1ze0rek3rSAjAt</param-value>
-	</context-param>
-	<context-param>
-		<param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
-		<param-value>6LeSNCMUAAAAAOe5hZ_mfoivEb-ClRi8l6y4UErO</param-value>
-	</context-param>
-	
-	<welcome-file-list>
-	    <welcome-file>navigation/index.xhtml</welcome-file>
-	</welcome-file-list>
-	
-	<security-constraint>
-	    <web-resource-collection>
-	        <web-resource-name>userModule</web-resource-name>
-	        <url-pattern>/navigation/userModule/*</url-pattern>
-	    </web-resource-collection>
-	    <auth-constraint>
-            <description/>
-            <role-name>User</role-name>
-        </auth-constraint>
-	</security-constraint>
-	
-	<security-role>
-	    <role-name>Worker</role-name>
-	</security-role>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+ <display-name>Serwis Urlopowy</display-name>
+ <context-param>
+  <param-name>javax.faces.CONFIG_FILES</param-name>
+  <param-value>/WEB-INF/faces-config.xml,/faces-config.xml</param-value>
+ </context-param>
+ <context-param>
+  <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+  <param-value>6LeSNCMUAAAAAIgCRW-S0z4Aoa1ze0rek3rSAjAt</param-value>
+ </context-param>
+ <context-param>
+  <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+  <param-value>6LeSNCMUAAAAAOe5hZ_mfoivEb-ClRi8l6y4UErO</param-value>
+ </context-param>
+ <servlet>
+  <servlet-name>Faces Servlet</servlet-name>
+  <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+  <load-on-startup>1</load-on-startup>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>Faces Servlet</servlet-name>
+  <url-pattern>/faces/*</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>Faces Servlet</servlet-name>
+  <url-pattern>*.jsf</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>Faces Servlet</servlet-name>
+  <url-pattern>*.xhtml</url-pattern>
+ </servlet-mapping>
+ <welcome-file-list>
+  <welcome-file>navigation/index.xhtml</welcome-file>
+ </welcome-file-list>
+ <security-constraint>
+  <web-resource-collection>
+   <web-resource-name>userModule</web-resource-name>
+   <url-pattern>/navigation/userModule/*</url-pattern>
+  </web-resource-collection>
+  <auth-constraint>
+   <role-name>User</role-name>
+  </auth-constraint>
+ </security-constraint>
+ <security-role>
+  <role-name>Worker</role-name>
+ </security-role>
 </web-app>

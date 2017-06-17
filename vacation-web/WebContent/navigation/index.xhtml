@@ -6,15 +6,20 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-	<f:loadBundle basename="homeTexts" var="text" />
 
 <h:head>
 	<title>Urlopek</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link type="text/css" href="styles.css" media="all" />
 </h:head>
-<body> 
+<h:body> 
 aaaa
+<h:inputText value = "#{userBean.userFindAllUsers()}" /> 
 
-</body> 
+
+<p:button value="Bookmark" icon="ui-icon-star">
+    <f:param name="productId" value="10" />
+</p:button>
+
+</h:body> 
 </html>
