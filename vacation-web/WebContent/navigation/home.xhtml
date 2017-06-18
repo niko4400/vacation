@@ -21,8 +21,8 @@
 		</p:tabMenu>
 
 		<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-		<p:dialog header="Logowanie" widgetVar="dlg" resizable="false">
-			<h:panelGrid columns="2" cellpadding="5">
+
+			<h:panelGrid columns="2" cellpadding="5" rendered="#{!loggedIn}">
 				<h:outputLabel for="username" value="login" />
 				<p:inputText id="username" value="#{userLoginView.login}"
 					required="true" label="username" />
@@ -32,26 +32,13 @@
 					required="true" label="password" />
 				<f:facet name="footer">
 					<p:commandButton value="login" update="growl"
-						actionListener="#{userLoginView.login}"
-						oncomplete="handleLoginRequest(xhr, status, args)" />
+						actionListener="#{userLoginView.login}" />
 				</f:facet>
 			</h:panelGrid>
-		</p:dialog>
+
 	</h:form>
 
 	<script type="text/javascript">
-    function handleLoginRequest(xhr, status, args) {
-        alert('a');
-        if(args.validationFailed || !args.loggedIn) {
-            PF('dlg').jq.effect("shake", {times:5}, 100);
-        }
-        else {
-            PF('dlg').hide();
-            sleep(1500).then(() => {
-            	window.open("home.jsf", "_self");
-            })
-        }
-    }
 
     function sleep (time) {
     	  return new Promise((resolve) => setTimeout(resolve, time));
@@ -62,10 +49,10 @@
 		<p:clock pattern="dd/MM/yyyy  HH:mm" />
 	</div>
 	
-		<h:form>
-		<h:outputText value="Login: #{userLoginView.login}"
+	<h:form>
+		<h:outputText value="Login: #{login}" rendered="#{loggedIn}"
 			styleClass="outputLabel" />
-		<p:commandButton value="Wyloguj" rendered="#{userLoginView.loggedIn}"
+		<p:commandButton value="Wyloguj" rendered="#{loggedIn}"
 			actionListener="#{userLoginView.logout}" ajax="false" />
 	</h:form>
 	

@@ -14,6 +14,10 @@
 </h:head>
 <h:body> 
 
+<f:metadata>
+    <f:viewParam name="addUser" value="działa" />
+</f:metadata>
+
 <h:form id="loginForm">
 
 		<p:tabMenu activeIndex="0" style="margin: 0px 0 10px 10px;">
@@ -22,19 +26,29 @@
 				outcome="home.xhtml" />
 			
 		</p:tabMenu>
-<h3>Sign in</h3>
+<h3>Create new account</h3>
     <h:panelGrid columns="2" cellpadding="5"  rendered="#{!loggedIn}">                   
-        <h:outputLabel for="username" value="Login" />
-        <p:inputText id="username" value="#{userLoginView.login}" required="true" label="username"  />
- 
-        <h:outputLabel for="password" value="password" />
-        <p:password id="password" value="#{userLoginView.password}" required="true"  label="password" />
+        <h:outputLabel for="login" value="Login" />
+        <p:inputText id="login" value="#{userCreateView.login}" required="true" label="login"  />
         
-		<p:commandButton value="login" 
-			actionListener="#{userLoginView.login}"
-			update=":loginForm :logoutForm" />
+        <h:outputLabel for="name" value="Name" />
+        <p:inputText id="name" value="#{userCreateView.name}" required="true" label="name"  />
+        
+        <h:outputLabel for="title" value="Title" />
+        <p:inputText id="title" value="#{userCreateView.title}" required="true" label="title"  />
+ 
+        <h:outputLabel for="password" value="Password" />
+        <p:password id="password" value="#{userCreateView.password}" match="passwordTmp" required="true"  label="password" />
+        
+        <h:outputLabel for="passwordTmp" value="Password match" />
+        <p:password id="passwordTmp" value="#{userCreateView.password}"  required="true"  label="passwordTmp" />
+        
+		<p:commandButton value="Create" 
+			actionListener="#{userCreateView.userCreate}"
+			update=":loginForm" />
 		</h:panelGrid>
 </h:form>
+
 
 	<script type="text/javascript">
     function sleep (time) {
@@ -46,16 +60,9 @@
 		<p:clock pattern="dd/MM/yyyy  HH:mm" />
 	</div>
 	
-<p:button outcome="addUser" value="Create new account" icon="ui-icon-star">
+<p:button outcome="index" value="Back to sign in" icon="ui-icon-star">
     
 </p:button>
-	
-	<h:form id="logoutForm">
-		<h:outputText value="Login: #{login}" rendered="#{loggedIn}"
-			styleClass="outputLabel" />
-		<p:commandButton value="Wyloguj" rendered="#{loggedIn}"
-			actionListener="#{userLoginView.logout}" ajax="false" />
-	</h:form>
 
 </h:body> 
 </html>

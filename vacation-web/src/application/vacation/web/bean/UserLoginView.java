@@ -1,5 +1,6 @@
 package application.vacation.web.bean;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -11,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpSession;
 
 import org.primefaces.context.RequestContext;
 
@@ -20,16 +22,24 @@ import application.vacation.model.User;
 
 @ManagedBean(name = "userLoginView")
 @SessionScoped
-public class UserLoginView {
+public class UserLoginView implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Boolean loggedIn = false;
 	private Boolean loggedAsUser = false;
 	private Boolean loggedAsAdmin = false;
 	private String login;
 	private String password;
 	private String title;
+	
+	private User user = new User();
 
 	@EJB
 	UserManager userManager;
+	
+	
 
 	
 	public Boolean getLoggedIn() {
@@ -88,6 +98,7 @@ public class UserLoginView {
 
 	public void login(ActionEvent event) throws UserNotFoundException {
 		RequestContext context = RequestContext.getCurrentInstance();
+		FacesContext facesContext = FacesContext.getCurrentInstance();
 		FacesMessage message = null;
 		List<User> users = userManager.findAllUsers();
 
@@ -103,12 +114,21 @@ public class UserLoginView {
 				if (i.getTitle().equals("admin")) {
 					loggedIn = true;
 					loggedAsAdmin = true;
+					
+					//TODO zmienic zmienne sesyjne na jeden obiekt
+					facesContext.getExternalContext().getSessionMap().put("loggedIn", loggedIn);
+					facesContext.getExternalContext().getSessionMap().put("login", login);
+					facesContext.getExternalContext().getSessionMap().put("loggedAsAdmin", loggedAsAdmin);
+					
 					System.out.println("zalogowany");
 					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Panel administracyjny", "Sekretarka");
 					break;
 				}
 				loggedIn = true;
 				loggedAsUser = true;
+				facesContext.getExternalContext().getSessionMap().put("loggedIn", loggedIn);
+				facesContext.getExternalContext().getSessionMap().put("login", login);
+				facesContext.getExternalContext().getSessionMap().put("loggedAsAdmin", loggedAsAdmin);
 				//System.out.println("zalogowany");
 				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Witamy: ", login);
 				break;
