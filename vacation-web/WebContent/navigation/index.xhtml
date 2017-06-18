@@ -8,18 +8,51 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
-	<title>Urlopek</title>
+	<title>System urlopowy</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link type="text/css" href="styles.css" media="all" />
 </h:head>
 <h:body> 
-aaaa
-<h:inputText value = "#{userBean.userFindAllUsers()}" /> 
+
+<h:form>
+
+		<p:tabMenu activeIndex="0" style="margin: 0px 0 10px 10px;">
+			<p:menuitem value="Main page" outcome="index.xhtml" />
+			<p:menuitem value="home" rendered="#{!userLoginView.loggedIn}" 
+				outcome="home.xhtml" />
+			
+		</p:tabMenu>
 
 
-<p:button value="Bookmark" icon="ui-icon-star">
-    <f:param name="productId" value="10" />
-</p:button>
+<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+    <h:panelGrid columns="2" id="matchGrid" cellpadding="5">                   
+        <h:outputLabel for="username" value="Login" />
+        <p:inputText id="username" value="#{userLoginView.login}" required="true" label="username"  />
+ 
+        <h:outputLabel for="password" value="password" />
+        <p:password id="password" value="#{userLoginView.password}" required="true"  label="password" />
+        
+		<p:commandButton value="login" update="growl"
+			actionListener="#{userLoginView.login}" />
+		</h:panelGrid>
+</h:form>
+
+	<script type="text/javascript">
+    function sleep (time) {
+  	  return new Promise((resolve) => setTimeout(resolve, time));
+  }
+	</script>
+	
+		<div align="right" style="margin-right: 1.5%">
+		<p:clock pattern="dd/MM/yyyy  HH:mm" />
+	</div>
+	
+		<h:form>
+		<h:outputText value="Login: #{userLoginView.login}"
+			styleClass="outputLabel" />
+		<p:commandButton value="Wyloguj" rendered="#{userLoginView.loggedIn}"
+			actionListener="#{userLoginView.logout}" ajax="false" />
+	</h:form>
 
 </h:body> 
 </html>

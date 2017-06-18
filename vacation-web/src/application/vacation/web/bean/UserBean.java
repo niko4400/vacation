@@ -1,4 +1,4 @@
-package application.vacation.web.servlet;
+package application.vacation.web.bean;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -17,8 +17,8 @@ public class UserBean {
 	
 	public String userFindAllUsers() {
 		//userManager.persistUser(new User());
-		//return String.valueOf(userManager.findAllUsers().size());
-		return "aadda";
+		return String.valueOf(userManager.findAllUsers().size());
+		//return "aadda";
 	}
 	
 	
