@@ -34,6 +34,9 @@ public class User implements Serializable {
 	private String name;
 	private String title;
 	private static final long serialVersionUID = 1L;
+	private String firstName;
+	private String lastName;
+	private String email;
 
 	public User() {
 		super();
@@ -73,5 +76,25 @@ public class User implements Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
+	public void setFirstName(String firstName){
+		this.firstName=firstName;
+	}
+	public String getFirstName(){
+		return this.firstName;
+	}
    
+	public void setlastName(String lastName){
+		this.lastName=lastName;
+	}
+	public String getlastName(){
+		return this.lastName;
+	}
+	
+	public void setMail(String email){
+		this.email=email;
+	}
+	public String getMail(){
+		return this.email;
+	}
 }

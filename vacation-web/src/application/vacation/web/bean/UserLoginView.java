@@ -33,6 +33,9 @@ public class UserLoginView implements Serializable {
 	private String login;
 	private String password;
 	private String title;
+	private String firstName;
+	private String lastName;
+	private String email;
 	
 	private User user = new User();
 
@@ -43,13 +46,17 @@ public class UserLoginView implements Serializable {
 	}
 	
 	public UserLoginView(boolean loggedIn,boolean loggedAsUser, boolean loggedAsAdmin,
-			String login, String password, String title){
+			String login, String password, String title,
+			String firstName, String lastName, String email){
 		this.loggedIn=loggedIn;
 		this.loggedAsUser=loggedAsUser;
 		this.loggedAsAdmin=loggedAsAdmin;
 		this.login=login;
 		this.password=password;
 		this.title=title;
+		this.firstName=firstName;
+		this.lastName=lastName;
+		this.email=email;
 	}
 
 	
@@ -89,13 +96,35 @@ public class UserLoginView implements Serializable {
 		return password;
 	}
 	
+	public String getTitle() {
+		return this.title;
+	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-	public String getTitle() {
-		return title;
+	
+	public void setFirstName(String firstName){
+		this.firstName=firstName;
 	}
+	public String getFirstName(){
+		return this.firstName;
+	}
+   
+	public void setlastName(String lastName){
+		this.lastName=lastName;
+	}
+	public String getlastName(){
+		return this.lastName;
+	}
+	
+	public void setMail(String email){
+		this.email=email;
+	}
+	public String getMail(){
+		return this.email;
+	}
+	
 
 	public void setPassword(String password) throws NoSuchAlgorithmException {
 		MessageDigest messageDigest = MessageDigest.getInstance("MD5");
@@ -127,7 +156,7 @@ public class UserLoginView implements Serializable {
 					loggedAsAdmin = true;
 					
 					UserLoginView userLoginView= new UserLoginView(loggedIn,loggedAsUser,loggedAsAdmin,
-							login,password,title);
+							login,password,title,firstName,lastName,email);
 					facesContext.getExternalContext().getSessionMap().put("userLoginView", userLoginView);
 
 					System.out.println("zalogowany");
@@ -138,7 +167,7 @@ public class UserLoginView implements Serializable {
 				loggedAsUser = true;
 				
 				UserLoginView userLoginView= new UserLoginView(loggedIn,loggedAsUser,loggedAsAdmin,
-						login,password,title);
+						login,password,title,firstName,lastName,email);
 				facesContext.getExternalContext().getSessionMap().put("userLoginView", userLoginView);
 
 				//System.out.println("zalogowany");
