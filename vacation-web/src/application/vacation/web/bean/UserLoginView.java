@@ -39,7 +39,18 @@ public class UserLoginView implements Serializable {
 	@EJB
 	UserManager userManager;
 	
+	public UserLoginView(){
+	}
 	
+	public UserLoginView(boolean loggedIn,boolean loggedAsUser, boolean loggedAsAdmin,
+			String login, String password, String title){
+		this.loggedIn=loggedIn;
+		this.loggedAsUser=loggedAsUser;
+		this.loggedAsAdmin=loggedAsAdmin;
+		this.login=login;
+		this.password=password;
+		this.title=title;
+	}
 
 	
 	public Boolean getLoggedIn() {
@@ -115,20 +126,21 @@ public class UserLoginView implements Serializable {
 					loggedIn = true;
 					loggedAsAdmin = true;
 					
-					//TODO zmienic zmienne sesyjne na jeden obiekt
-					facesContext.getExternalContext().getSessionMap().put("loggedIn", loggedIn);
-					facesContext.getExternalContext().getSessionMap().put("login", login);
-					facesContext.getExternalContext().getSessionMap().put("loggedAsAdmin", loggedAsAdmin);
-					
+					UserLoginView userLoginView= new UserLoginView(loggedIn,loggedAsUser,loggedAsAdmin,
+							login,password,title);
+					facesContext.getExternalContext().getSessionMap().put("userLoginView", userLoginView);
+
 					System.out.println("zalogowany");
 					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Panel administracyjny", "Sekretarka");
 					break;
 				}
 				loggedIn = true;
 				loggedAsUser = true;
-				facesContext.getExternalContext().getSessionMap().put("loggedIn", loggedIn);
-				facesContext.getExternalContext().getSessionMap().put("login", login);
-				facesContext.getExternalContext().getSessionMap().put("loggedAsAdmin", loggedAsAdmin);
+				
+				UserLoginView userLoginView= new UserLoginView(loggedIn,loggedAsUser,loggedAsAdmin,
+						login,password,title);
+				facesContext.getExternalContext().getSessionMap().put("userLoginView", userLoginView);
+
 				//System.out.println("zalogowany");
 				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Witamy: ", login);
 				break;
