@@ -111,17 +111,17 @@ public class UserLoginView implements Serializable {
 		return this.firstName;
 	}
    
-	public void setlastName(String lastName){
+	public void setLastName(String lastName){
 		this.lastName=lastName;
 	}
-	public String getlastName(){
+	public String getLastName(){
 		return this.lastName;
 	}
 	
-	public void setMail(String email){
+	public void setEmail(String email){
 		this.email=email;
 	}
-	public String getMail(){
+	public String getEmail(){
 		return this.email;
 	}
 	
@@ -156,8 +156,8 @@ public class UserLoginView implements Serializable {
 					loggedAsAdmin = true;
 					
 					UserLoginView userLoginView= new UserLoginView(loggedIn,loggedAsUser,loggedAsAdmin,
-							login,password,title,firstName,lastName,email);
-					facesContext.getExternalContext().getSessionMap().put("userLoginView", userLoginView);
+							i.getLogin(),password,i.getTitle(),i.getFirstName(),i.getLastName(),i.getEmail());
+					facesContext.getExternalContext().getSessionMap().put("user", userLoginView);
 
 					System.out.println("zalogowany");
 					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Panel administracyjny", "Sekretarka");
@@ -166,10 +166,11 @@ public class UserLoginView implements Serializable {
 				loggedIn = true;
 				loggedAsUser = true;
 				
-				UserLoginView userLoginView= new UserLoginView(loggedIn,loggedAsUser,loggedAsAdmin,
-						login,password,title,firstName,lastName,email);
-				facesContext.getExternalContext().getSessionMap().put("userLoginView", userLoginView);
 
+				UserLoginView userLoginView= new UserLoginView(loggedIn,loggedAsUser,loggedAsAdmin,
+						i.getLogin(),password,i.getTitle(),i.getFirstName(),i.getLastName(),i.getEmail());
+				facesContext.getExternalContext().getSessionMap().put("user", userLoginView);
+				
 				//System.out.println("zalogowany");
 				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Witamy: ", login);
 				break;

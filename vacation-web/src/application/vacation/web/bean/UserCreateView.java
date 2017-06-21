@@ -28,6 +28,9 @@ public class UserCreateView implements Serializable {
 	private String password;
 	private String title;
 	private String name;
+	private String email;
+	private String firstName;
+	private String lastName;
 	
 	
 	@EJB
@@ -41,6 +44,27 @@ public class UserCreateView implements Serializable {
 
 	public void setLogin(String login) {
 		this.login = login;
+	}
+	
+	public void setFirstName(String firstName){
+		this.firstName=firstName;
+	}
+	public String getFirstName(){
+		return this.firstName;
+	}
+   
+	public void setLastName(String lastName){
+		this.lastName=lastName;
+	}
+	public String getLastName(){
+		return this.lastName;
+	}
+	
+	public void setEmail(String email){
+		this.email=email;
+	}
+	public String getEmail(){
+		return this.email;
 	}
 	
 	
@@ -89,7 +113,9 @@ public class UserCreateView implements Serializable {
 		
 		user.setLogin(login);
 		user.setPassword(password);
-		user.setName(name);
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setEmail(email);
 		user.setTitle(title);
 		
 		System.out.println("login " + user.getLogin());

@@ -84,17 +84,17 @@ public class User implements Serializable {
 		return this.firstName;
 	}
    
-	public void setlastName(String lastName){
+	public void setLastName(String lastName){
 		this.lastName=lastName;
 	}
-	public String getlastName(){
+	public String getLastName(){
 		return this.lastName;
 	}
 	
-	public void setMail(String email){
+	public void setEmail(String email){
 		this.email=email;
 	}
-	public String getMail(){
+	public String getEmail(){
 		return this.email;
 	}
 }

@@ -22,8 +22,9 @@
 				outcome="home.xhtml" />
 			
 		</p:tabMenu>
-<h3>Sign in</h3>
-    <h:panelGrid columns="2" cellpadding="5"  rendered="#{!loggedIn}">                   
+
+    <h:panelGrid  cellpadding="5"  rendered="#{!user.getLoggedIn()}">       
+    	<h3>Sign in</h3>     
         <h:outputLabel for="username" value="Login" />
         <p:inputText id="username" value="#{userLoginView.login}" required="true" label="username"  />
  
@@ -33,6 +34,12 @@
 		<p:commandButton value="login" 
 			actionListener="#{userLoginView.login}"
 			update=":loginForm :logoutForm" />
+			
+		<p:button  
+			outcome="addUser" 
+			value="Create new account" 
+			icon="ui-icon-star">
+		</p:button>
 		</h:panelGrid>
 </h:form>
 
@@ -45,15 +52,12 @@
 		<div align="right" style="margin-right: 1.5%">
 		<p:clock pattern="dd/MM/yyyy  HH:mm" />
 	</div>
-	
-<p:button outcome="addUser" value="Create new account" icon="ui-icon-star">
-    
-</p:button>
+
 	
 	<h:form id="logoutForm">
-		<h:outputText value="Login: #{login}" rendered="#{loggedIn}"
+		<h:outputText value="Login: #{user.getFirstName()}" rendered="#{user.getLoggedIn()}"
 			styleClass="outputLabel" />
-		<p:commandButton value="Wyloguj" rendered="#{loggedIn}"
+		<p:commandButton value="Wyloguj" rendered="#{user.getLoggedIn()}"
 			actionListener="#{userLoginView.logout}" ajax="false" />
 	</h:form>
 
