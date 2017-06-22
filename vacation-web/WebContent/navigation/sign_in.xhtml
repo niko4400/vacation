@@ -1,0 +1,75 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<title>System urlopowy</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link type="text/css" href="styles.css" media="all" />
+</h:head>
+<h:body> 
+
+<h:form id="loginForm">
+
+		<p:tabMenu activeIndex="0" style="margin: 0px 0 10px 10px;">
+			<p:menuitem value="Main page" outcome="index.xhtml" />
+			<p:menuitem value="home" outcome="home.xhtml" />
+			<p:menuitem value="vacation" outcome="vacation.xhtml" />
+			<p:menuitem value="Sign In" outcome="sign_in.xhtml" />
+			<p:menuitem value="Register" outcome="addUser.xhtml" />
+			
+		</p:tabMenu>
+		
+		
+		 <h:panelGrid  cellpadding="5"  rendered="#{!user.getLoggedIn()}">       
+    	<h3>Sign in</h3>     
+        <h:outputLabel for="username" value="Login" />
+        <p:inputText id="username" value="#{userLoginView.login}" required="true" label="username"  />
+ 
+        <h:outputLabel for="password" value="password" />
+        <p:password id="password" value="#{userLoginView.password}" required="true"  label="password" />
+        
+		<p:commandButton value="login" 
+			actionListener="#{userLoginView.login}"
+			update=":loginForm :logoutForm" />
+			
+		<p:button  
+			outcome="addUser" 
+			value="Create new account" 
+			icon="ui-icon-star">
+		</p:button>
+		</h:panelGrid>
+			
+    
+</h:form>
+
+	<script type="text/javascript">
+    function sleep (time) {
+  	  return new Promise((resolve) => setTimeout(resolve, time));
+  }
+	</script>
+	
+		<div align="right" style="margin-right: 1.5%">
+		<p:clock pattern="dd/MM/yyyy  HH:mm" />
+	</div>
+
+<h:form>           
+    
+</h:form>
+	<p:growl id="message" showDetail="true" />
+	<h:form id="logoutForm">
+		<h:outputText value="Login: #{user.getFirstName()}" rendered="#{user.getLoggedIn()}"
+			styleClass="outputLabel" />
+		<p:commandButton value="Wyloguj" rendered="#{user.getLoggedIn()}"
+			actionListener="#{userLoginView.logout}" ajax="false" />
+		
+
+	</h:form>
+
+</h:body> 
+</html>
