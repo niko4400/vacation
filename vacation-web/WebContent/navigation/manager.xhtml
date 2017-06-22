@@ -24,6 +24,8 @@
 			<p:menuitem value="home" outcome="home.xhtml" />
 			<p:menuitem value="vacation" outcome="vacation.xhtml" />
 			<p:menuitem value="manager" outcome="manager.xhtml" />
+			<p:menuitem value="sign in" outcome="sign_in.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
+			<p:menuitem value="register" outcome="addUser.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
 			
 		</p:tabMenu>
 

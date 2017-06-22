@@ -13,20 +13,20 @@
 	<link type="text/css" href="styles.css" media="all" />
 </h:head>
 <h:body> 
-
 <h:form id="loginForm">
 
 		<p:tabMenu activeIndex="0" style="margin: 0px 0 10px 10px;">
 			<p:menuitem value="Main page" outcome="index.xhtml" />
 			<p:menuitem value="home" outcome="home.xhtml" />
 			<p:menuitem value="vacation" outcome="vacation.xhtml" />
-			<p:menuitem value="Sign In" outcome="sign_in.xhtml" />
-			<p:menuitem value="Register" outcome="addUser.xhtml" />
+			<p:menuitem value="manager" outcome="manager.xhtml" />
+			<p:menuitem value="sign in" outcome="sign_in.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
+			<p:menuitem value="register" outcome="addUser.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
 			
 		</p:tabMenu>
 		
 		
-		 <h:panelGrid  cellpadding="5"  rendered="#{!user.getLoggedIn()}">       
+		 <h:panelGrid  cellpadding="5"  rendered="#{!userLoginView.checkSession(false)}">       
     	<h3>Sign in</h3>     
         <h:outputLabel for="username" value="Login" />
         <p:inputText id="username" value="#{userLoginView.login}" required="true" label="username"  />
@@ -63,9 +63,9 @@
 </h:form>
 	<p:growl id="message" showDetail="true" />
 	<h:form id="logoutForm">
-		<h:outputText value="Login: #{user.getFirstName()}" rendered="#{user.getLoggedIn()}"
+		<h:outputText value="Login: #{user.getFirstName()}" rendered="#{userLoginView.checkSession(false)}"
 			styleClass="outputLabel" />
-		<p:commandButton value="Wyloguj" rendered="#{user.getLoggedIn()}"
+		<p:commandButton value="Wyloguj" rendered="#{userLoginView.checkSession(false)}"
 			actionListener="#{userLoginView.logout}" ajax="false" />
 		
 

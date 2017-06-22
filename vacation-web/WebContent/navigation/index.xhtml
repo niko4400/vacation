@@ -21,27 +21,11 @@
 			<p:menuitem value="home" outcome="home.xhtml" />
 			<p:menuitem value="vacation" outcome="vacation.xhtml" />
 			<p:menuitem value="manager" outcome="manager.xhtml" />
+			<p:menuitem value="sign in" outcome="sign_in.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
+			<p:menuitem value="register" outcome="addUser.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
 			
 		</p:tabMenu>
 
-    <h:panelGrid  cellpadding="5"  rendered="#{!userLoginView.checkSession(false)}">       
-    	<h3>Sign in</h3>     
-        <h:outputLabel for="username" value="Login" />
-        <p:inputText id="username" value="#{userLoginView.login}" required="true" label="username"  />
- 
-        <h:outputLabel for="password" value="password" />
-        <p:password id="password" value="#{userLoginView.password}" required="true"  label="password" />
-        
-		<p:commandButton value="login" 
-			actionListener="#{userLoginView.login}"
-			update=":loginForm :logoutForm" />
-			
-		<p:button  
-			outcome="addUser" 
-			value="Create new account" 
-			icon="ui-icon-star">
-		</p:button>
-		</h:panelGrid>
 </h:form>
 
 	<script type="text/javascript">

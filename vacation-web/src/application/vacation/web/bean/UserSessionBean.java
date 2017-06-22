@@ -33,7 +33,7 @@ public class UserSessionBean implements Serializable {
 			 return true;
 		 }
 		 if(flag) {
-			 NavigationBean.redirect("index.xhtml");
+			 NavigationBean.redirect("sign_in.xhtml");
 		 }
 		return false;	 
 	 }

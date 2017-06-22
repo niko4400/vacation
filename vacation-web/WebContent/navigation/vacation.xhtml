@@ -14,6 +14,7 @@
 </h:head>
 
 <h:body>
+<div style="display:none">#{userLoginView.checkSession(true)}</div>
 <h:form id="loginForm">
 
 		<p:tabMenu activeIndex="0" style="margin: px 0 10px 10px;">
@@ -21,6 +22,8 @@
 			<p:menuitem value="home" outcome="home.xhtml" />
 			<p:menuitem value="vacation" outcome="vacation.xhtml" />
 			<p:menuitem value="manager" outcome="manager.xhtml" />
+			<p:menuitem value="sign in" outcome="sign_in.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
+			<p:menuitem value="register" outcome="addUser.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
 			
 		</p:tabMenu>
 
