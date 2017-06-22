@@ -31,8 +31,7 @@ public class User implements Serializable {
 	private Long id;
 	private String login;
 	private String password;
-	private String name;
-	private String title;
+	private String jobTitle;
 	private static final long serialVersionUID = 1L;
 	private String firstName;
 	private String lastName;
@@ -62,19 +61,13 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}   
-	public String getName() {
-		return this.name;
+  
+	public String getJobTitle() {
+		return this.jobTitle;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}   
-	public String getTitle() {
-		return this.title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
 	}
 	
 	public void setFirstName(String firstName){

@@ -1,5 +1,6 @@
 package application.vacation.web.bean;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -32,12 +33,13 @@ public class UserLoginView implements Serializable {
 	private Boolean loggedAsAdmin = false;
 	private String login;
 	private String password;
-	private String title;
+	private String jobTitle;
 	private String firstName;
 	private String lastName;
 	private String email;
 	
 	private User user = new User();
+
 
 	@EJB
 	UserManager userManager;
@@ -46,14 +48,14 @@ public class UserLoginView implements Serializable {
 	}
 	
 	public UserLoginView(boolean loggedIn,boolean loggedAsUser, boolean loggedAsAdmin,
-			String login, String password, String title,
+			String login, String password, String jobTitle,
 			String firstName, String lastName, String email){
 		this.loggedIn=loggedIn;
 		this.loggedAsUser=loggedAsUser;
 		this.loggedAsAdmin=loggedAsAdmin;
 		this.login=login;
 		this.password=password;
-		this.title=title;
+		this.jobTitle=jobTitle;
 		this.firstName=firstName;
 		this.lastName=lastName;
 		this.email=email;
@@ -96,12 +98,12 @@ public class UserLoginView implements Serializable {
 		return password;
 	}
 	
-	public String getTitle() {
-		return this.title;
+	public String getJobTitle() {
+		return this.jobTitle;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
 	}
 	
 	public void setFirstName(String firstName){
@@ -140,6 +142,7 @@ public class UserLoginView implements Serializable {
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		FacesMessage message = null;
+		UserSessionBean userSession = UserSessionBean.getInstance();
 		List<User> users = userManager.findAllUsers();
 
 		
@@ -151,8 +154,8 @@ public class UserLoginView implements Serializable {
 			if (i.getLogin().equals(login) && i.getPassword().equals(password)) {
 				System.out.println("haslo z bazy: "+i.getPassword());
 				System.out.println("haslo z formularza " + password);
-				if (i.getTitle().equals("admin")) {
-					loggedIn = true;
+				if (i.getJobTitle().equals("admin")) {
+				/*	loggedIn = true;
 					loggedAsAdmin = true;
 					
 					UserLoginView userLoginView= new UserLoginView(loggedIn,loggedAsUser,loggedAsAdmin,
@@ -161,16 +164,17 @@ public class UserLoginView implements Serializable {
 
 					System.out.println("zalogowany");
 					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Panel administracyjny", "Sekretarka");
-					break;
+					break;*/					
+					userSession.setSession(i);
 				}
-				loggedIn = true;
+				/*loggedIn = true;
 				loggedAsUser = true;
 				
 
 				UserLoginView userLoginView= new UserLoginView(loggedIn,loggedAsUser,loggedAsAdmin,
 						i.getLogin(),password,i.getTitle(),i.getFirstName(),i.getLastName(),i.getEmail());
-				facesContext.getExternalContext().getSessionMap().put("user", userLoginView);
-				
+				facesContext.getExternalContext().getSessionMap().put("user", userLoginView);*/
+				userSession.setSession(i);
 				//System.out.println("zalogowany");
 				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Witamy: ", login);
 				break;
@@ -185,7 +189,14 @@ public class UserLoginView implements Serializable {
 		context.addCallbackParam("loggedIn", loggedIn);
 	}
 	
+	public Boolean checkSession(Boolean flag) throws IOException {
+		UserSessionBean userSession = UserSessionBean.getInstance();
+		return userSession.checkSession(flag);
+	}
+	
 	public void logout(ActionEvent actionEvent) {
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		UserSessionBean userSession = UserSessionBean.getInstance();
+		//FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		userSession.destroySession();
 	}
 }

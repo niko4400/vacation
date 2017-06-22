@@ -14,6 +14,8 @@
 </h:head>
 <h:body> 
 
+<div style="display:none">#{userLoginView.checkSession(false)}</div>
+
 <f:metadata>
     <f:viewParam name="addUser" value="działa" />
 </f:metadata>
@@ -27,7 +29,7 @@
 			
 		</p:tabMenu>
 <h3>Create new account</h3>
-    <h:panelGrid columns="2" cellpadding="5"  rendered="#{!loggedIn}">                   
+    <h:panelGrid columns="2" cellpadding="5" >                   
         <h:outputLabel for="login" value="Login" />
         <p:inputText id="login" value="#{userCreateView.login}" required="true" label="login"  />
         
@@ -40,8 +42,8 @@
         <h:outputLabel for="email" value="Email" />
         <p:inputText id="email" value="#{userCreateView.email}" required="true" label="email"  />
         
-        <h:outputLabel for="title" value="Title" />
-        <p:inputText id="title" value="#{userCreateView.title}" required="true" label="title"  />
+        <h:outputLabel for="jobTitle" value="Job title" />
+        <p:inputText id="jobTitle" value="#{userCreateView.jobTitle}" required="true" label="jobTitle"  />
  
         <h:outputLabel for="password" value="Password" />
         <p:password id="password" value="#{userCreateView.password}" match="passwordTmp" required="true"  label="password" />

@@ -24,7 +24,7 @@
 			
 		</p:tabMenu>
 
-    <h:panelGrid  cellpadding="5"  rendered="#{!user.getLoggedIn()}">       
+    <h:panelGrid  cellpadding="5"  rendered="#{!userLoginView.checkSession(false)}">       
     	<h3>Sign in</h3>     
         <h:outputLabel for="username" value="Login" />
         <p:inputText id="username" value="#{userLoginView.login}" required="true" label="username"  />
@@ -56,9 +56,9 @@
 
 	
 	<h:form id="logoutForm">
-		<h:outputText value="Login: #{user.getFirstName()}" rendered="#{user.getLoggedIn()}"
+		<h:outputText value="Login: #{user.getFirstName()}" rendered="#{userLoginView.checkSession(false)}"
 			styleClass="outputLabel" />
-		<p:commandButton value="Wyloguj" rendered="#{user.getLoggedIn()}"
+		<p:commandButton value="Wyloguj" rendered="#{userLoginView.checkSession(false)}"
 			actionListener="#{userLoginView.logout}" ajax="false" />
 	</h:form>
 

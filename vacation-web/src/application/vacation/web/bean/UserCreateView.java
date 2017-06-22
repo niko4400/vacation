@@ -26,7 +26,7 @@ public class UserCreateView implements Serializable {
 	
 	private String login;
 	private String password;
-	private String title;
+	private String jobTitle;
 	private String name;
 	private String email;
 	private String firstName;
@@ -82,12 +82,12 @@ public class UserCreateView implements Serializable {
 		return password;
 	}
 	
-	public void setTitle(String title) {
-		this.title = title;
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getJobTitle() {
+		return jobTitle;
 	}
 	
 	public void setName(String name) {
@@ -116,12 +116,11 @@ public class UserCreateView implements Serializable {
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		user.setEmail(email);
-		user.setTitle(title);
+		user.setJobTitle(jobTitle);
 		
 		System.out.println("login " + user.getLogin());
 		System.out.println("password " + user.getPassword());
-		System.out.println("name " + user.getName());
-		System.out.println("title " + user.getTitle());
+		System.out.println("title " + user.getJobTitle());
 		
 		userManager.persistUser(user);
 		

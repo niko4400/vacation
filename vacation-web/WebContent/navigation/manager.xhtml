@@ -14,6 +14,9 @@
 </h:head>
 
 <h:body>
+
+<div style="display:none">#{userLoginView.checkSession(true)}</div>
+
 <h:form id="loginForm">
 
 		<p:tabMenu activeIndex="0" style="margin: 0px 0 10px 10px;">
@@ -24,24 +27,6 @@
 			
 		</p:tabMenu>
 
-    <h:panelGrid  cellpadding="5"  rendered="#{!user.getLoggedIn()}">       
-    	<h3>Sign in</h3>     
-        <h:outputLabel for="username" value="Login" />
-        <p:inputText id="username" value="#{userLoginView.login}" required="true" label="username"  />
- 
-        <h:outputLabel for="password" value="password" />
-        <p:password id="password" value="#{userLoginView.password}" required="true"  label="password" />
-        
-		<p:commandButton value="login" 
-			actionListener="#{userLoginView.login}"
-			update=":loginForm :logoutForm" />
-			
-		<p:button  
-			outcome="addUser" 
-			value="Create new account" 
-			icon="ui-icon-star">
-		</p:button>
-		</h:panelGrid>
 </h:form>
 
 	<script type="text/javascript">
@@ -56,9 +41,9 @@
 
 	
 	<h:form id="logoutForm">
-		<h:outputText value="Login: #{user.getFirstName()}" rendered="#{user.getLoggedIn()}"
+		<h:outputText value="Login: #{user.getFirstName()}"
 			styleClass="outputLabel" />
-		<p:commandButton value="Wyloguj" rendered="#{user.getLoggedIn()}"
+		<p:commandButton value="Wyloguj"
 			actionListener="#{userLoginView.logout}" ajax="false" />
 	</h:form>
 	
