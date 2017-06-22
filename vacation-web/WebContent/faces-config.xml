@@ -7,8 +7,13 @@
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
  <managed-bean>
-  <managed-bean-name>userSessionBean</managed-bean-name>
+  <managed-bean-name>userCreateView</managed-bean-name>
   <managed-bean-class>application.vacation.web.bean.UserCreateView</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>calendarView</managed-bean-name>
+  <managed-bean-class>application.vacation.web.bean.CalendarView</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
  <application/>

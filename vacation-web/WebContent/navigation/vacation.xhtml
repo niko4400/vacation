@@ -6,14 +6,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-
+	
 <h:head>
 	<title>System urlopowy</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link type="text/css" href="styles.css" media="all" />
+	<link type="text/css" href="style.css" media="all" />
 </h:head>
-<h:body> 
 
+<h:body>
 <h:form id="loginForm">
 
 		<p:tabMenu activeIndex="0" style="margin: 0px 0 10px 10px;">
@@ -61,6 +61,40 @@
 		<p:commandButton value="Wyloguj" rendered="#{user.getLoggedIn()}"
 			actionListener="#{userLoginView.logout}" ajax="false" />
 	</h:form>
-
+	
+	<h:form id="form">
+    <p:growl id="msgs" showDetail="true" />
+ 
+    <h:panelGrid columns="2" cellpadding="5">
+        <p:outputLabel for="inline" value="Inline:" />
+        <p:calendar id="inline" value="#{calendarView.date1}" mode="inline" />
+ 
+     
+        <p:outputLabel for="multi" value="Multiple:" />
+        <p:calendar id="multi" value="#{calendarView.date1}" pages="3" />
+ 
+    </h:panelGrid>
+ 
+    <p:commandButton value="Submit" update="msgs" actionListener="#{calendarView.click}" icon="ui-icon-check" />
+ 
+    <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+        <p:panelGrid id="display" columns="2" columnClasses="label,value">
+            <h:outputText value="Inline:" />
+            <h:outputText value="#{calendarView.date1}">
+                <f:convertDateTime pattern="MM/dd/yyyy" />
+            </h:outputText>
+ 
+            <h:outputText value="Multiple:" />
+            <h:outputText value="#{calendarView.date1}">
+                <f:convertDateTime pattern="MM/dd/yyyy" />
+            </h:outputText>
+            
+ 
+          
+        </p:panelGrid>
+    </p:dialog>
+</h:form>
+	
+	
 </h:body> 
 </html>
