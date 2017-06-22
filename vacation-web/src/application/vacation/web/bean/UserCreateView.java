@@ -125,6 +125,8 @@ public class UserCreateView implements Serializable {
 		
 		userManager.persistUser(user);
 		
+		NavigationBean.redirect("index.xhtml");
+		
 		return 0;
 	}
 
