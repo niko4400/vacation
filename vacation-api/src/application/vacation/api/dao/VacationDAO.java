@@ -7,6 +7,10 @@ import application.vacation.model.Vacation;
 
 public interface VacationDAO {
 
-	//TODO
+	Vacation findVacation(Long id);
+	List<Vacation> findAllVacations();
+	Vacation mergeVacation(Vacation vacation);
+	void persistVacation(Vacation vacation);
+	void removeVacation(Vacation vacation);
 	
 }

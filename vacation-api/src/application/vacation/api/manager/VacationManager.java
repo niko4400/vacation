@@ -12,6 +12,10 @@ import application.vacation.model.Vacation;
 @Remote
 public interface VacationManager {
 
-	//TODO 
+	Vacation findVacation(Long id) throws VacationNotFoundException;
+	List<Vacation> findAllVacations() throws VacationNotFoundException;;
+	Vacation mergeVacation(Vacation vacation);
+	void persistVacation(Vacation vacation);
+	void removeVacation(Vacation vacation);
 	
 }
