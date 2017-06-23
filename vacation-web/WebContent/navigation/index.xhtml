@@ -40,7 +40,7 @@
 
 	
 	<h:form id="logoutForm">
-		<h:outputText value="Login: #{user.getFirstName()}" rendered="#{userLoginView.checkSession(false)}"
+		<h:outputText value="Imie: #{user.getFirstName()}" rendered="#{userLoginView.checkSession(false)}"
 			styleClass="outputLabel" />
 		<p:commandButton value="Wyloguj" rendered="#{userLoginView.checkSession(false)}"
 			actionListener="#{userLoginView.logout}" ajax="false" />
