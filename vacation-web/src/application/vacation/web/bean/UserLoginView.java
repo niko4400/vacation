@@ -40,7 +40,10 @@ public class UserLoginView implements Serializable {
 	
 	private User user = new User();
 
-
+	public User getUser(){
+		return this.user;
+	}
+	
 	@EJB
 	UserManager userManager;
 	
@@ -192,6 +195,11 @@ public class UserLoginView implements Serializable {
 	public Boolean checkSession(Boolean flag) throws IOException {
 		UserSessionBean userSession = UserSessionBean.getInstance();
 		return userSession.checkSession(flag);
+	}
+	
+	public UserSessionBean getUserSessionInstance(){
+		UserSessionBean userSession = UserSessionBean.getInstance();
+		return userSession;
 	}
 	
 	public void logout(ActionEvent actionEvent) {
