@@ -105,7 +105,30 @@ public class VacationView {
     	}
     }
     
-    
+    public void create(ActionEvent event,List<User> users) {
+    	String name;
+    	for (User i : users) {
+    		name =i.getFirstName() + " " + i.getLastName();
+    		if(name.equals(substitute)) {
+    			 vacation  = new Vacation();
+    			 vacation.setUser(UserSessionBean.getInstance().getSessionUser());
+    			 System.out.println(vacation.getUser().getFirstName());
+    			 
+    			 vacation.setSubstitute(i);
+    			 System.out.println(vacation.getSubstitute().getFirstName());			 
+    			 
+    			 
+    			 vacation.setStart(start); 
+    			 System.out.println(vacation.getStart());
+    			 vacation.setEnd(end); 
+    			 System.out.println(vacation.getEnd());
+    			 vacation.setState("NO");
+    			 
+    			 vacationManager.persistVacation(vacation);
+    			
+    		}
+    	}
+    }   
     
 
 	public VacationView() {

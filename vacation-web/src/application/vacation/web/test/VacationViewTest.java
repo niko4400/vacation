@@ -31,7 +31,9 @@ import application.vacation.web.bean.VacationView;
 public class VacationViewTest {
 
 @EJB
+@Mock
 UserManager userManager;
+@Mock
 VacationManager vacationManager;
 
 @Mock
@@ -40,9 +42,13 @@ ActionEvent mockEvent;// = mock(ActionEvent.class);
 	
 	@Test
 	public void test(){
-		VacationView view=new VacationView();
 
-		view.create(mockEvent);
+		VacationView view=new VacationView();
+		List<User>users=userManager.findAllUsers();
+
+		assertNotNull(users);
+
+		view.create(mockEvent,users);
 		
 	}
 	

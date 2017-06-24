@@ -133,4 +133,14 @@ public class UserCreateView implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	public UserCreateView(String login, String password, String jobTitle,
+			String firstName, String lastName, String email){
+		this.login=login;
+		this.password=password;
+		this.jobTitle=jobTitle;
+		this.firstName=firstName;
+		this.lastName=lastName;
+		this.email=email;
+	}
+	
 }
