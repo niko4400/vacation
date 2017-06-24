@@ -46,6 +46,16 @@ public class UserSessionBean implements Serializable {
 		 user = (User) facesContext.getExternalContext().getSessionMap().get("user");
 		 System.out.println(user.getFirstName());
 	 }
+	 
+	 public User getSessionUser(){
+		 FacesContext facesContext = FacesContext.getCurrentInstance();		 
+		 if(facesContext.getExternalContext().getSessionMap().containsKey("user")==false)
+			 return null;
+		 else {
+			 Object object= facesContext.getExternalContext().getSessionMap().get("user");
+			 return (User) object;
+		 }
+	 }
 	  
 	 // do logout
 	 public void destroySession() {

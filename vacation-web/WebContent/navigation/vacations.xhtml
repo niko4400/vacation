@@ -1,0 +1,65 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	
+<h:head>
+	<title>System urlopowy</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link type="text/css" href="style.css" media="all" />
+</h:head>
+
+<h:body>
+<div style="display:none">#{userLoginView.checkSession(true)}</div>
+<h:form id="loginForm">
+
+		<p:tabMenu activeIndex="0" style="margin: px 0 10px 10px;">
+			<p:menuitem value="Main page" outcome="index.xhtml" />
+			<p:menuitem value="home" outcome="home.xhtml" />
+			<p:menuitem value="vacation" outcome="vacation.xhtml" />
+			<p:menuitem value="manager" outcome="manager.xhtml" />
+			<p:menuitem value="sign in" outcome="signIn.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
+			<p:menuitem value="register" outcome="addUser.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
+			
+		</p:tabMenu>
+		
+<h3>Add new vacation</h3>
+    <h:panelGrid columns="2" cellpadding="5" >                   
+        <h:outputLabel value="Login" />
+        <h:outputLabel id="user" value="#{userSessionBean.getSessionUser().getFirstName()}" />
+             
+        <p:outputLabel for="substitute" value="Substitute" />
+        <p:selectOneMenu id="substitute" value="#{vacationView.substitute}">
+      
+       
+            <f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItems value="#{vacationView.users}" var="user" itemLabel="#{vacationView.getFullName(user)}" 
+            				itemValue="#{vacationView.getFullName(user)}" />
+        </p:selectOneMenu>
+  
+        
+        <p:outputLabel for="start" value="Start:" />
+        <p:calendar id="start" value="#{vacationView.start}" pattern="yyyy-MM-dd">
+            <p:ajax event="dateSelect" listener="#{vacationView.onDateSelect}"  />
+        </p:calendar>
+        
+        <p:outputLabel for="end" value="End:" />
+        <p:calendar id="end" value="#{vacationView.end}" pattern="yyyy-MM-dd">
+            <p:ajax event="dateSelect" listener="#{vacationView.onDateSelect}"  />
+        </p:calendar>
+        
+        <p:commandButton value="Create" 
+			actionListener="#{vacationView.create}"
+			update=":loginForm" />
+       
+	</h:panelGrid>		
+
+    
+</h:form>
+
+</h:body> 
+</html>

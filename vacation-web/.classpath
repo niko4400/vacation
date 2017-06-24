@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="C:/Users/Komp/Desktop/EE_arbeitspace/vacation/lib/primefaces/primefaces-6.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Komp/Desktop/EE_arbeitspace/vacation/lib/log4j-1.2.12.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/Komp/Desktop/EE_arbeitspace/vacation/lib/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
