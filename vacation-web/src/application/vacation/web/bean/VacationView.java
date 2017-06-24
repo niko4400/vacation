@@ -90,25 +90,26 @@ public class VacationView {
     			 vacation.setUser(UserSessionBean.getInstance().getSessionUser());
     			 System.out.println(vacation.getUser().getFirstName());
     			 
+    			 User user=vacation.getUser();
+    			 
+    			 
     			 vacation.setSubstitute(i);
     			 System.out.println(vacation.getSubstitute().getFirstName());			 
-    			 
-    			// vacation.setId(1l);
+
     			 vacation.setStart(start); 
     			 System.out.println(vacation.getStart());
     			 vacation.setEnd(end); 
     			 System.out.println(vacation.getEnd());
-    			 //System.err.println("000");
+
     			 vacation.setState("NO");
-    			 //System.err.println("111");
+
     			 System.out.println(vacation.toString());
-    			 if((vacationManager!=null)&&(vacation!=null))
-    			 vacationManager.persistVacation(vacation);
-    			 else System.out.println("ERR PERSIST");
     			 
-    			 System.out.println("vm: "+vacationManager+" \nv: "+vacation+" \num: "+ userManager);
-    			 
-    			
+    			 String userName=user.getFirstName() + " " + user.getLastName();
+
+    			 if(userName.equals(substitute))System.out.println("user cannot be substituted by itself");
+    			 else
+    				 vacationManager.persistVacation(vacation);
     		}
     	}
     }

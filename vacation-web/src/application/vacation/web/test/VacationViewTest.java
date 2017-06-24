@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -18,6 +19,7 @@ import org.mockito.*;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import application.vacation.api.exception.UserNotFoundException;
+import application.vacation.api.exception.VacationNotFoundException;
 import application.vacation.api.manager.UserManager;
 import application.vacation.api.manager.VacationManager;
 import application.vacation.model.User;
@@ -35,7 +37,7 @@ public class VacationViewTest {
 @Mock
 UserManager userManager;
 @EJB
-@Mock
+//@Mock
 VacationManager vacationManager;
 
 @Mock
@@ -53,14 +55,20 @@ ActionEvent mockEvent;// = mock(ActionEvent.class);
 		
 		assertNotNull(users);
 		vacationManager.persistVacation(vacation);
+		vacationManager.persistVacation(vacation);
+		vacationManager.persistVacation(vacation);
 		
+		
+			try {
+				System.out.println(vacationManager.findAllVacations());
+			} catch (VacationNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		//view.create(mockEvent);
-		//view.create2(mockEvent,users);
+		//view.create(mockEvent,users);
+		
 		assertEquals(view,defaultView);
 	}
-	
-	@Test
-	public void stringDate(){
-		int i=
-	}
+
 }

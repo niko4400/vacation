@@ -26,79 +26,40 @@
 			<p:menuitem value="register" outcome="addUser.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
 			
 		</p:tabMenu>
+		
+<h3>Add new vacation</h3>
+    <h:panelGrid columns="2" cellpadding="5" >                   
+        <h:outputLabel value="Login" />
+        <h:outputLabel id="user" value="#{userSessionBean.getSessionUser().getFirstName()}" />
+             
+        <p:outputLabel for="substitute" value="Substitute" />
+        <p:selectOneMenu id="substitute" value="#{vacationView.substitute}">
+      
+       
+            <f:selectItem itemLabel="Select One" itemValue="" />
+            <f:selectItems value="#{vacationView.users}" var="user" itemLabel="#{vacationView.getFullName(user)}" 
+            				itemValue="#{vacationView.getFullName(user)}" />
+        </p:selectOneMenu>
+  
+        
+        <p:outputLabel for="start" value="Start:" />
+        <p:calendar id="start" value="#{vacationView.start}" pattern="yyyy-MM-dd">
+            <p:ajax event="dateSelect" listener="#{vacationView.onDateSelect}"  />
+        </p:calendar>
+        
+        <p:outputLabel for="end" value="End:" />
+        <p:calendar id="end" value="#{vacationView.end}" pattern="yyyy-MM-dd">
+            <p:ajax event="dateSelect" listener="#{vacationView.onDateSelect}"  />
+        </p:calendar>
+        
+        <p:commandButton value="Create" 
+			actionListener="#{vacationView.create}"
+			update=":loginForm" />
+       
+	</h:panelGrid>		
 
     
 </h:form>
 
-	<script type="text/javascript">
-    function sleep (time) {
-  	  return new Promise((resolve) => setTimeout(resolve, time));
-  }
-	</script>
-	
-		<div align="right" style="margin-right: 1.5%">
-		<p:clock pattern="dd/MM/yyyy  HH:mm" />
-	</div>
-
-	
-	<h:form id="logoutForm">
-		<h:outputText value="Login: #{user.getFirstName()}" 
-			styleClass="outputLabel" />
-		<p:commandButton value="Wyloguj" 
-			actionListener="#{userLoginView.logout}" ajax="false" />
-	</h:form>
-	
-	
-	
-	
-	
-	<h:form>
-    <p:growl id="messages" showDetail="true" />
- 
-    <h:panelGrid columnClasses="value">
-        <h3 style="margin-top: 0">Editable Schedule</h3>
-        <p:schedule id="schedule" value="#{scheduleView.eventModel}" widgetVar="myschedule" timeZone="GMT+2">
- 
-            <p:ajax event="dateSelect" listener="#{scheduleView.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-            <p:ajax event="eventSelect" listener="#{scheduleView.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-            <p:ajax event="eventMove" listener="#{scheduleView.onEventMove}" update="messages" />
-            <p:ajax event="eventResize" listener="#{scheduleView.onEventResize}" update="messages" />
- 
-        </p:schedule>
- 
-       
-    </h:panelGrid>
- 
-    <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
-        <h:panelGrid id="eventDetails" columns="2">
-            <p:outputLabel for="title" value="Titles:" />
-            <p:inputText id="title" value="#{scheduleView.event.title}" required="true" />
- 
-            <p:outputLabel for="from" value="From:" />
-            <p:calendar id="from" value="#{scheduleView.event.startDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
- 
-            <p:outputLabel for="to" value="To:" />
-            <p:calendar id="to" value="#{scheduleView.event.endDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
- 
-            <p:outputLabel for="allDay" value="All Day:" />
-            <h:selectBooleanCheckbox id="allDay" value="#{scheduleView.event.allDay}" />
- 
-            <p:commandButton type="reset" value="Reset" />
-            <p:commandButton id="addButton" value="Save" actionListener="#{scheduleView.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
-        </h:panelGrid>
-    </p:dialog>    
-</h:form>
-
-<style type="text/css">
-    .value {
-        width: 1000px;
-    }
-</style>
-	
-	
-	
-	
-	
-	
 </h:body> 
 </html>
