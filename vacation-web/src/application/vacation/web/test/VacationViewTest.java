@@ -37,8 +37,11 @@ public class VacationViewTest {
 @Mock
 UserManager userManager;
 @EJB
-//@Mock
+@Mock
 VacationManager vacationManager;
+
+@Mock
+Vacation vac;
 
 @Mock
 ActionEvent mockEvent;// = mock(ActionEvent.class);
@@ -52,22 +55,24 @@ ActionEvent mockEvent;// = mock(ActionEvent.class);
 		List<User>users=userManager.findAllUsers();
 		Vacation vacation=new Vacation();
 		assertNotNull(vacation);
-		
+		assertNotNull(vac);
+
 		assertNotNull(users);
-		vacationManager.persistVacation(vacation);
-		vacationManager.persistVacation(vacation);
-		vacationManager.persistVacation(vacation);
+
 		
+		vacationManager.persistVacation(vacation);
+		vacationManager.removeVacation(vacation);
 		
-			try {
-				System.out.println(vacationManager.findAllVacations());
-			} catch (VacationNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		//view.create(mockEvent);
-		//view.create(mockEvent,users);
-		
+		vacationManager.persistVacation(vac);
+		vacationManager.removeVacation(vac);
+try {
+	assertTrue(vacationManager.findAllVacations().isEmpty());
+} catch (VacationNotFoundException e) {
+	fail("vacation not found");
+}
+
+		view.create(mockEvent,users);
+
 		assertEquals(view,defaultView);
 	}
 

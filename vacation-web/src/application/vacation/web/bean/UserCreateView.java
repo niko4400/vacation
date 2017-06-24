@@ -129,6 +129,36 @@ public class UserCreateView implements Serializable {
 		return 0;
 	}
 
+	public int userCreate(List<User> users) {
+		RequestContext context = RequestContext.getCurrentInstance();
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		FacesMessage message = null;
+		
+		for (User i : users) {
+			if (i.getLogin().equals(login) ) {	
+				//TODO login juz istnieje 
+				return 0;
+			}
+		}
+		
+		user.setLogin(login);
+		user.setPassword(password);
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setEmail(email);
+		user.setJobTitle(jobTitle);
+		
+		System.out.println("login " + user.getLogin());
+		System.out.println("password " + user.getPassword());
+		System.out.println("title " + user.getJobTitle());
+		
+		userManager.persistUser(user);
+		
+		NavigationBean.redirect("index.xhtml");
+		
+		return 0;
+	}
+	
 	public UserCreateView() {
 		// TODO Auto-generated constructor stub
 	}
