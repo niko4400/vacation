@@ -3,12 +3,13 @@ package application.vacation.ejb.manager;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 import application.vacation.api.dao.VacationDAO;
 import application.vacation.api.exception.VacationNotFoundException;
 import application.vacation.api.manager.VacationManager;
 import application.vacation.model.Vacation;
-
+@Stateless
 public class DefaultVacationManager implements VacationManager {
 
 	@EJB

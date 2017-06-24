@@ -24,6 +24,7 @@ public class VacationView {
 	
 	@EJB
 	UserManager userManager;	
+	@EJB
 	VacationManager vacationManager;
      
 	private Vacation vacation;
@@ -92,14 +93,21 @@ public class VacationView {
     			 vacation.setSubstitute(i);
     			 System.out.println(vacation.getSubstitute().getFirstName());			 
     			 
-    			 
+    			// vacation.setId(1l);
     			 vacation.setStart(start); 
     			 System.out.println(vacation.getStart());
     			 vacation.setEnd(end); 
     			 System.out.println(vacation.getEnd());
+    			 //System.err.println("000");
     			 vacation.setState("NO");
-    			 
+    			 //System.err.println("111");
+    			 System.out.println(vacation.toString());
+    			 if((vacationManager!=null)&&(vacation!=null))
     			 vacationManager.persistVacation(vacation);
+    			 else System.out.println("ERR PERSIST");
+    			 
+    			 System.out.println("vm: "+vacationManager+" \nv: "+vacation+" \num: "+ userManager);
+    			 
     			
     		}
     	}

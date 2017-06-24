@@ -2,12 +2,13 @@ package application.vacation.ejb.dao;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import application.vacation.api.dao.VacationDAO;
 import application.vacation.model.Vacation;
-
+@Stateless
 public class DefaultVacationDAO implements VacationDAO {
 	@PersistenceContext
 	private EntityManager entityManager;

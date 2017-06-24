@@ -21,6 +21,7 @@ import application.vacation.api.exception.UserNotFoundException;
 import application.vacation.api.manager.UserManager;
 import application.vacation.api.manager.VacationManager;
 import application.vacation.model.User;
+import application.vacation.model.Vacation;
 import application.vacation.web.bean.UserCreateView;
 import application.vacation.web.bean.UserLoginView;
 import application.vacation.web.bean.UserSessionBean;
@@ -33,6 +34,7 @@ public class VacationViewTest {
 @EJB
 @Mock
 UserManager userManager;
+@EJB
 @Mock
 VacationManager vacationManager;
 
@@ -44,12 +46,21 @@ ActionEvent mockEvent;// = mock(ActionEvent.class);
 	public void test(){
 
 		VacationView view=new VacationView();
+		VacationView defaultView=view;
 		List<User>users=userManager.findAllUsers();
-
-		assertNotNull(users);
-
-		view.create(mockEvent,users);
+		Vacation vacation=new Vacation();
+		assertNotNull(vacation);
 		
+		assertNotNull(users);
+		vacationManager.persistVacation(vacation);
+		
+		//view.create(mockEvent);
+		//view.create2(mockEvent,users);
+		assertEquals(view,defaultView);
 	}
 	
+	@Test
+	public void stringDate(){
+		int i=
+	}
 }

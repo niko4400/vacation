@@ -95,7 +95,25 @@ public class Vacation implements Serializable {
 	}
 	
 	
-	
+	@SuppressWarnings("deprecation")
+	public String getStartDate(){
+		String s=Integer.toString(this.start.getYear()+1900);
+		System.out.print("lenStart"+s.length());
+
+		return s.charAt(2)+s.charAt(3)+"-"+(this.start.getMonth()+1)+"-"+this.start.getDate();
+	}
+	@SuppressWarnings("deprecation")
+	public String getEndDate(){
+		String s=Integer.toString(this.end.getYear()+1900);
+		System.out.print("len"+s.length()+"..|");
+		return s.charAt(2)+s.charAt(3)+"-"+(this.end.getMonth()+1)+"-"+this.end.getDate();
+	}
+	@Override
+	public String toString(){
+		return this.id+"\n"+getStartDate()+"\n"
+				+getEndDate()+"\n"+this.state;
+	}
+    
 	
 	
    
