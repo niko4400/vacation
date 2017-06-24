@@ -3,8 +3,6 @@ package application.vacation.model;
 import application.vacation.model.User;
 import java.io.Serializable;
 import java.lang.String;
-import java.util.Date;
-
 import javax.persistence.*;
 
 import javax.persistence.Column;
@@ -37,6 +35,8 @@ public class Vacation implements Serializable {
 	@Id
 	@GeneratedValue( strategy=GenerationType.AUTO )
 	private Long id;
+	private java.util.Date  start;
+	private java.util.Date  end;
 	@ManyToOne
 	@JoinColumn(name = "ID_USER")
 	private User user;
@@ -45,23 +45,7 @@ public class Vacation implements Serializable {
 	private User substitute;
 	private String state;
 	private static final long serialVersionUID = 1L;
-	private Date start;
-	private Date end;
-	
-	public void setStart(Date start){
-		this.start=start;
-	}
-	public Date getStart(){
-		return this.start;
-	}
-	public void setEnd(Date end){
-		this.end=end;
-	}
-	public Date getEnd(){
-		return this.end;
-	}
-	
-	
+
 	public Vacation() {
 		super();
 	}   
@@ -93,5 +77,26 @@ public class Vacation implements Serializable {
 	public void setState(String state) {
 		this.state = state;
 	}
+	
+	public java.util.Date getStart() {
+		return this.start;
+	}
+
+	public void setStart(java.util.Date start) {
+		this.start = start;
+	}
+	
+	public java.util.Date getEnd() {
+		return this.end;
+	}
+
+	public void setEnd(java.util.Date end) {
+		this.end = end;
+	}
+	
+	
+	
+	
+	
    
 }

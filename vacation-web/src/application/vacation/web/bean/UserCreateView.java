@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -38,10 +37,6 @@ public class UserCreateView implements Serializable {
 	UserManager userManager;
 	
 	User user = new User();
-	
-	public User getUser(){
-		return this.user;
-	}
 	
 	public String getLogin() {
 		return login;
@@ -103,32 +98,19 @@ public class UserCreateView implements Serializable {
 		return name;
 	}
 	
-	public UserCreateView(String login, String password, String jobTitle,
-			String firstName, String lastName, String email){
-		this.login=login;
-		this.password=password;
-		this.jobTitle=jobTitle;
-		this.firstName=firstName;
-		this.lastName=lastName;
-		this.email=email;
-	}
-		
-	
 	public int userCreate() {
-
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		FacesMessage message = null;
-
 		List<User> users = userManager.findAllUsers();
-
+		
 		for (User i : users) {
 			if (i.getLogin().equals(login) ) {	
 				//TODO login juz istnieje 
-				return -1;
+				return 0;
 			}
 		}
-
+		
 		user.setLogin(login);
 		user.setPassword(password);
 		user.setFirstName(firstName);
@@ -146,8 +128,7 @@ public class UserCreateView implements Serializable {
 		
 		return 0;
 	}
-	
-	
+
 	public UserCreateView() {
 		// TODO Auto-generated constructor stub
 	}

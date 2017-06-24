@@ -81,6 +81,7 @@ public class VacationView {
     public void create(ActionEvent event) {
     	System.out.println("start");
     	String name;
+    	List<User> users = userManager.findAllUsers();
     	for (User i : users) {
     		name =i.getFirstName() + " " + i.getLastName();
     		if(name.equals(substitute)) {

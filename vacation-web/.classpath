@@ -15,10 +15,8 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/vacation-api"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/vacation-ejb"/>
-	<classpathentry kind="lib" path="C:/Users/Komp/Desktop/EE_arbeitspace/vacation/lib/themes/all-themes-1.0.10.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Komp/Desktop/EE_arbeitspace/vacation/lib/primefaces/primefaces-6.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Komp/Desktop/EE_arbeitspace/vacation/lib/log4j-1.2.12.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="C:/Users/Komp/Desktop/EE_arbeitspace/vacation/lib/mockito-all-1.9.5.jar"/>
+	<classpathentry kind="lib" path="D:/Programy/jeeworkspace/gittmp/vacation/lib/log4j-1.2.12.jar"/>
+	<classpathentry kind="lib" path="D:/Programy/jeeworkspace/gittmp/vacation/lib/themes/all-themes-1.0.10.jar"/>
+	<classpathentry kind="lib" path="D:/Programy/jeeworkspace/gittmp/vacation/lib/primefaces/primefaces-6.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
