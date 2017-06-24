@@ -59,14 +59,13 @@ public class UserSessionBean implements Serializable {
 	 
 	 
 	public UserSessionBean() {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		facesContext = FacesContext.getCurrentInstance();
-		user = (User) facesContext.getExternalContext().getSessionMap().get("user");
+
 	}
 
 	public User getSessionUser() {
-		// TODO Auto-generated method stub
-		return null;
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		facesContext = FacesContext.getCurrentInstance();
+		return (User) facesContext.getExternalContext().getSessionMap().get("user");
 	}
 
 }
