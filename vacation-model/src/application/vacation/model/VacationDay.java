@@ -18,8 +18,13 @@ import javax.persistence.NamedQuery;
  * Entity implementation class for Entity: VacationDay
  *
  */
-@Entity
+@NamedQueries({
+    @NamedQuery(
+            name = "VacationDay.findAllOrdered",
+            query = "SELECT vacationDay FROM VacationDay vacationDay ORDER BY vacationDay.id ASC")
+})
 
+@Entity
 public class VacationDay implements Serializable {
 
 	   

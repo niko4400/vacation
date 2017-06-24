@@ -6,6 +6,10 @@ import application.vacation.model.VacationDay;
 
 public interface VacationDayDAO {
 
-	//TODO
+	VacationDay findVacationDay(Long id);
+	List<VacationDay> findAllVacationDays();
+	VacationDay mergeVacationDay(VacationDay vacationDay);
+	void persistVacationDay(VacationDay vacationDay);
+	void removeVacationDay(VacationDay vacationDay);
 	
 }
