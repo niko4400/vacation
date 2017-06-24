@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * Entity implementation class for Entity: User
@@ -27,14 +29,35 @@ public class User implements Serializable {
 
 	   
 	@Id
-	@GeneratedValue( strategy=GenerationType.AUTO )
-	private Long id;
+	@GeneratedValue( strategy=GenerationType.AUTO )	
+	private Long id;	
+	
+	@Size(min=2, max=20)
 	private String login;
+	
 	private String password;
+	
+	@Size(min=2, max=20)
+	@Pattern(regexp="^[\\p{L} .'-]+$",
+    message=" tylko litery ")
 	private String jobTitle;
+	
 	private static final long serialVersionUID = 1L;
+	
+	@Size(min=2, max=20)
+	@Pattern(regexp="^[\\p{L} .'-]+$",
+	             message=" tylko litery ")
 	private String firstName;
+	
+	@Size(min=2, max=20)
+	@Pattern(regexp="^[\\p{L} .'-]+$",
+    message=" tylko litery ")
 	private String lastName;
+	
+	@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
+	        +"[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
+	        +"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+	             message=" prawid³owy format maila to x@hosting.pl ")
 	private String email;
 
 	public User() {
