@@ -26,28 +26,18 @@ import application.vacation.web.bean.UserCreateView;
 @RunWith(MockitoJUnitRunner.class)
 public class UserCreateViewTest {
 
-@Mock
-UserCreateView createView= new UserCreateView();
-@EJB
-@Mock
-UserManager userManager;
-User user;
-List<User> mockList;
-
-
+	@Mock
+	UserCreateView createView = new UserCreateView();
+	@EJB
+	@Mock
+	UserManager userManager;
+	User user;
+	List<User> mockList;
 
 	@Test
 	public void test() {
-		mockList=userManager.findAllUsers();
-		List<User>users=userManager.findAllUsers();
+		mockList = userManager.findAllUsers();
 
-		/*UserCreateView createView2= new UserCreateView();
-		createView2.setEmail("aaa");
-		createView2.userCreate(mockList);
-		assertEquals(createView2.getEmail(),"aaa");
-		*/
-		
-		
 		userManager.persistUser(user);
 		userManager.removeUser(user);
 		try {

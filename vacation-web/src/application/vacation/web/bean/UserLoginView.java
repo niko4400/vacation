@@ -40,6 +40,12 @@ public class UserLoginView implements Serializable {
 	
 	private User user = new User();
 
+	public void setUser(User user){
+		this.user=user;
+	}
+	public User getUser(){
+		return this.user;
+	}
 
 	@EJB
 	UserManager userManager;
@@ -155,25 +161,10 @@ public class UserLoginView implements Serializable {
 				System.out.println("haslo z bazy: "+i.getPassword());
 				System.out.println("haslo z formularza " + password);
 				if (i.getJobTitle().equals("admin")) {
-				/*	loggedIn = true;
-					loggedAsAdmin = true;
-					
-					UserLoginView userLoginView= new UserLoginView(loggedIn,loggedAsUser,loggedAsAdmin,
-							i.getLogin(),password,i.getTitle(),i.getFirstName(),i.getLastName(),i.getEmail());
-					facesContext.getExternalContext().getSessionMap().put("user", userLoginView);
-
-					System.out.println("zalogowany");
-					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Panel administracyjny", "Sekretarka");
-					break;*/					
+				
 					userSession.setSession(i);
 				}
-				/*loggedIn = true;
-				loggedAsUser = true;
-				
 
-				UserLoginView userLoginView= new UserLoginView(loggedIn,loggedAsUser,loggedAsAdmin,
-						i.getLogin(),password,i.getTitle(),i.getFirstName(),i.getLastName(),i.getEmail());
-				facesContext.getExternalContext().getSessionMap().put("user", userLoginView);*/
 				userSession.setSession(i);
 				//System.out.println("zalogowany");
 				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Witamy: ", login);
@@ -188,6 +179,35 @@ public class UserLoginView implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		context.addCallbackParam("loggedIn", loggedIn);
 	}
+	
+	public void login(ActionEvent event,List<User> users) throws UserNotFoundException {
+		RequestContext context = RequestContext.getCurrentInstance();
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		FacesMessage message = null;
+		UserSessionBean userSession = UserSessionBean.getInstance();
+		
+		for (User i : users) {
+			if (i.getLogin().equals(login) && i.getPassword().equals(password)) {
+				System.out.println("haslo z bazy: "+i.getPassword());
+				System.out.println("haslo z formularza " + password);
+				if (i.getJobTitle().equals("admin")) {
+				
+					userSession.setSession(i);
+				}
+
+				userSession.setSession(i);
+				//System.out.println("zalogowany");
+				message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Witamy: ", login);
+				break;
+			}
+		}
+
+		if (loggedIn == false) {
+			message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Nie zalogowano", "Wprowadzono błędne dane");
+		}
+
+	}
+	
 	
 	public Boolean checkSession(Boolean flag) throws IOException {
 		UserSessionBean userSession = UserSessionBean.getInstance();

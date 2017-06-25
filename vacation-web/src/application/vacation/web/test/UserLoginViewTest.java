@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -12,7 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.junit.Test;
-
+import org.mockito.Mock;
 
 import application.vacation.api.exception.UserNotFoundException;
 import application.vacation.api.manager.UserManager;
@@ -23,32 +25,33 @@ import application.vacation.web.bean.UserSessionBean;
 
 public class UserLoginViewTest {
 
-@EJB
-UserManager userManager;
+	@EJB
+	UserManager userManager;
 
 	@Test
-	public void createViewTest(){
-		
-		UserCreateView createView=new UserCreateView("login","pass","jTitle","1name","2name","mail");
+	public void createViewTest() {
+
+		UserCreateView createView = new UserCreateView("login", "pass", "jTitle", "1name", "2name", "mail");
 		assertNotNull(createView);
-		
+
 	}
-	
+
 	@Test
-	public void loginViewTest(){
-		
-		UserLoginView loginView=new UserLoginView(true,true,true, //logged,user,admin
-				"login","pass","jTitle","1name","2name","mail");
+	public void loginViewTest() {
+
+		UserLoginView loginView = new UserLoginView(true, true, true, // logged,user,admin
+				"login", "pass", "jTitle", "1name", "2name", "mail");
 
 		assertNotNull(loginView);
-		
+		assertEquals(loginView.getEmail(), "mail");
+
 	}
-	
+
 	@Test
-	public void testEncrypting(){
-		
-		UserLoginView loginView=new UserLoginView();
-		UserLoginView loginView2=new UserLoginView();
+	public void testEncrypting() {
+
+		UserLoginView loginView = new UserLoginView();
+		UserLoginView loginView2 = new UserLoginView();
 
 		try {
 			loginView.setPassword("password");
@@ -56,56 +59,26 @@ UserManager userManager;
 		} catch (NoSuchAlgorithmException e) {
 			fail("no such algorithm");
 		}
-		
-		assertEquals(loginView.getPassword(),loginView2.getPassword());
+
+		assertEquals(loginView.getPassword(), loginView2.getPassword());
 	}
 
-	
+	User user = new User();
+	UserSessionBean userSession = new UserSessionBean();
+	Map<String, Object> map = new HashMap<String, Object>();
+
 	@Test
-	public void testLogInAndOut(){
-		
-		UserSessionBean userSession=new UserSessionBean();
-		
-		Boolean defaultSession=false;
+	public void testLogInAndOut() {
 
-
-		
-		UserLoginView loginView=new UserLoginView(true,false,true, //logged,user,admin
-			"login","pass","jTitle","1name","2name","mail");
-		
-		//List<User> users = userManager.findAllUsers();
-
-		User user=new User();
+		assertNotNull(user);
 		user.setId(1l);
-		user.getPassword();
-		userSession.setSession(user);
-		loginView.getPassword();
+		user.setPassword("abc");
+		assertNotNull(userSession);
+		assertNotNull(user);
 
-		
-		try {
-			assertFalse(userSession.checkSession(false)==defaultSession);
-		} catch (IOException e) {
-			fail("IOException");
-		}
+		user.setFirstName("aaaaaaa");
+		userSession.setSession(user, map);
+		assertTrue(userSession.getSessionUser(map).equals(user));
 
-		userSession = UserSessionBean.getInstance();
-		userSession.destroySession();
-		
-		//assertEquals(defaultSession,false);
-
-		try {
-			assertEquals(defaultSession,userSession.checkSession(false));
-		} catch (IOException e) {
-			fail("IOException");
-		}
 	}
-	
-		
-	//	UserCreateView createView=new UserCreateView("login","pass","jTitle","1name","2name","mail");
-
-		//UserLoginView loginView=new UserLoginView(true,false,true, //logged,user,admin
-			//	"login","pass","jTitle","1name","2name","mail");
-
-
-	
 }

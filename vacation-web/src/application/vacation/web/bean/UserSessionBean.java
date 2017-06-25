@@ -5,6 +5,7 @@ package application.vacation.web.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -40,10 +41,14 @@ public class UserSessionBean implements Serializable {
 	 
 	 public void setSession(User user) {
 		 FacesContext facesContext = FacesContext.getCurrentInstance();
-		 System.out.println("ustawiam sesje");
 		 facesContext = FacesContext.getCurrentInstance();
 		 facesContext.getExternalContext().getSessionMap().put("user", user);
 		 user = (User) facesContext.getExternalContext().getSessionMap().get("user");
+		 System.out.println(user.getFirstName());
+	 }
+	 public void setSession(User user,Map<String,Object> map) {
+		 map.put("user", user);
+		 user = (User) map.get("user");
 		 System.out.println(user.getFirstName());
 	 }
 	  
@@ -66,6 +71,10 @@ public class UserSessionBean implements Serializable {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		facesContext = FacesContext.getCurrentInstance();
 		return (User) facesContext.getExternalContext().getSessionMap().get("user");
+	}
+	public User getSessionUser(Map<String,Object> map) {
+
+		return (User) map.get("user");
 	}
 
 }
