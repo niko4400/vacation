@@ -24,7 +24,7 @@ public class MailBean {
     @Resource(name = "java:jboss/mail/Wp")
     private Session session;
  
-    public void send(String addresses, String topic, String textMessage) {
+    public void send() {
     	
  try{
     	Properties props = new Properties ();
