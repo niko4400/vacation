@@ -28,6 +28,12 @@
 			<p:menuitem value="register" outcome="addUser.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
 			
 		</p:tabMenu>
+		
+		
+  	 	
+			 <p:commandButton value="print" 
+			actionListener="#{mailBean.send(1,1,1)}"
+			/>
 
 </h:form>
 

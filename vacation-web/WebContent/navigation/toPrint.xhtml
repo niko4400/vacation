@@ -6,17 +6,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-	
+
 <h:head>
 	<title>System urlopowy</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link type="text/css" href="style.css" media="all" />
+	<link type="text/css" href="styles.css" media="all" />
 </h:head>
+<h:body> 
 
-<h:body>
-<div style="display:none">#{userLoginView.checkSession(true)}</div>
-
-<h:form id="loginForm" >
+<h:form id="loginForm">
 
 		<p:tabMenu activeIndex="0" style="margin: 0px 0 10px 10px;">
 			<p:menuitem value="Main page" outcome="index.xhtml" />
@@ -24,6 +22,7 @@
 			<p:menuitem value="vacation" outcome="vacation.xhtml" />
 			<p:menuitem value="manager" outcome="manager.xhtml" />
 			<p:menuitem value="pdf" outcome="toPrint.xhtml" />
+			<p:menuitem value="pdfs" outcome="toPrint.xhtml" />
 			
 		</p:tabMenu>
 
@@ -40,6 +39,14 @@
 	</div>
 
 	
+	<h:form id="form">
+		
+		
+		<p:commandButton value="print" rendered="#{printPdf.createPdf()}"
+			 ajax="false" onclick="this.form.target='_blank'" />
+	</h:form>
 	
+	
+
 </h:body> 
 </html>
