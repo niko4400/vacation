@@ -12,11 +12,6 @@
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
  <managed-bean>
-  <managed-bean-name>calendarView</managed-bean-name>
-  <managed-bean-class>application.vacation.web.bean.CalendarView</managed-bean-class>
-  <managed-bean-scope>request</managed-bean-scope>
- </managed-bean>
- <managed-bean>
   <managed-bean-name>navigationBean</managed-bean-name>
   <managed-bean-class>application.vacation.web.bean.NavigationBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
@@ -34,12 +29,13 @@
  <managed-bean>
   <managed-bean-name>printPdf</managed-bean-name>
   <managed-bean-class>application.vacation.web.bean.PrintPdf</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
+  <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>mailBean</managed-bean-name>
   <managed-bean-class>application.vacation.web.bean.MailBean</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+
  <application/>
 </faces-config>

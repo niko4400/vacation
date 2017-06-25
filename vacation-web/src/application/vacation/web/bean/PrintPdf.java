@@ -1,33 +1,52 @@
 package application.vacation.web.bean;
 
-
 import java.io.IOException;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
-import javax.annotation.ManagedBean;
-import javax.enterprise.context.SessionScoped;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.inject.Named;
+
+import org.primefaces.context.RequestContext;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
-import com.lowagie.text.DocumentException;
+import application.vacation.api.exception.UserNotFoundException;
+import application.vacation.api.manager.UserManager;
+import application.vacation.model.User;
 
-@ManagedBean("printPdf")
+@ManagedBean(name = "printPdf")
 @SessionScoped
 public class PrintPdf implements Serializable {
 	
-	private String printPdf;
 
-	public PrintPdf(){
-		
-	}
 	
-	public void createPdf() throws DocumentException, IOException{
+	@EJB
+	UserManager userManager;
+	
+	User user = new User();
+
+
+	
+	public PrintPdf() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	
+	
+	public void createPdf() throws IOException{
 		FacesContext fC =FacesContext.getCurrentInstance();
 		ExternalContext eC =fC.getExternalContext();
 		HttpSession session=(HttpSession) eC.getSession(true);
@@ -52,8 +71,7 @@ public class PrintPdf implements Serializable {
 		
 	}
 
-
-
-
-
+	
+	
+	
 }
