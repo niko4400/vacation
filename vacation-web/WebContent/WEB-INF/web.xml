@@ -25,10 +25,6 @@
  </servlet-mapping>
  <servlet-mapping>
   <servlet-name>Faces Servlet</servlet-name>
-  <url-pattern>*.jsf</url-pattern>
- </servlet-mapping>
- <servlet-mapping>
-  <servlet-name>Faces Servlet</servlet-name>
   <url-pattern>*.xhtml</url-pattern>
  </servlet-mapping>
  <welcome-file-list>
@@ -46,4 +42,27 @@
  <security-role>
   <role-name>Worker</role-name>
  </security-role>
+ 
+ <!-- SMTP settings -->
+	<context-param>
+		<param-name>host</param-name>
+		<param-value>smtp.wp.pl</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>port</param-name>
+		<param-value>587</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>user</param-name>
+		<param-value>dawidrylo@wp.pl</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>pass</param-name>
+		<param-value>gorillaz1</param-value>
+	</context-param>
+
+	
 </web-app>
