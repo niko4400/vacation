@@ -2,14 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://java.sun.com/jsf/html"> 
 
 <h:head></h:head> 
 <body>
 
  <h1> Generate PDF</h1>
 <h:form>
-<h:commandButton action="printPdf.createPdf()" value="ExportToPDF" />
+<h:commandButton action="#{printPdf.createPdf}" value="ExportToPDF" />
 </h:form>
 
 </body> 
