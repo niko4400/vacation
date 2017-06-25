@@ -48,6 +48,7 @@ public class PrintPdf implements Serializable {
 		String url = "http://localhost/:8080/application/navigation/print.xhtml:jsessionid"+session.getId()+"?pdf=true";
 		
 		try {
+			System.out.println("pdf zaczynam");
 			ITextRenderer itRenderer=	new ITextRenderer();
 			itRenderer.setDocument(new URL(url).toString());
 			itRenderer.layout();
