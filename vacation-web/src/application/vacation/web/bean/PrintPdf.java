@@ -1,30 +1,21 @@
 package application.vacation.web.bean;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import java.math.BigInteger;
-import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.List;
+import java.net.MalformedURLException;
 
-import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.primefaces.context.RequestContext;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
-import application.vacation.api.exception.UserNotFoundException;
-import application.vacation.api.manager.UserManager;
-import application.vacation.model.User;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.codec.Base64.OutputStream;
+import com.lowagie.text.DocumentException;
 
 @ManagedBean(name = "printPdf")
 @SessionScoped
@@ -41,30 +32,20 @@ public class PrintPdf implements Serializable {
 
 	
 	
-	public void createPdf() throws IOException{
-		FacesContext fC =FacesContext.getCurrentInstance();
-		ExternalContext eC =fC.getExternalContext();
-		HttpSession session=(HttpSession) eC.getSession(true);
-		String url = "http://localhost/:8080/application/navigation/print.xhtml:jsessionid"+session.getId()+"?pdf=true";
-		
-		try {
-			System.out.println("pdf zaczynam");
-			ITextRenderer itRenderer=	new ITextRenderer();
-			itRenderer.setDocument(new URL(url).toString());
-			itRenderer.layout();
-			HttpServletResponse response=(HttpServletResponse) eC.getResponse();
-			response.reset();
-			response.setContentType("application/pdf");
-			response.setHeader("Content-Dispositon", "inline; filename=\"print-file.pdf\"");
-			ServletOutputStream outputStream=response.getOutputStream();
-			itRenderer.createPDF(outputStream);
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		fC.responseComplete();
-		
+	public void createPdf() throws DocumentException, IOException {
+	
+		 String File_To_Convert = "C:/Users/Dominik/git/vacation/vacation-web/WebContent/navigation/print.xhtml";
+	        String url = new File(File_To_Convert).toURI().toURL().toString();
+	        System.out.println("---"+url);
+	        String HTML_TO_PDF = "ConvertedFile.pdf";
+	        FileOutputStream os = new FileOutputStream(HTML_TO_PDF);
+	     
+	         ITextRenderer renderer = new ITextRenderer();
+	                renderer.setDocument(url);      
+	                renderer.layout();
+	                renderer.createPDF(os) ;    
+	                os.close();
+	          System.out.println("done.");	
 	}
 
 	
