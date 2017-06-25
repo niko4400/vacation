@@ -31,11 +31,6 @@ import application.vacation.model.User;
 public class PrintPdf implements Serializable {
 	
 
-	
-	@EJB
-	UserManager userManager;
-	
-	User user = new User();
 
 
 	
