@@ -15,23 +15,10 @@
 
 <h:body>
 
-alallalalal
-<h:outputText value="#{UserSessionBean.getInstance()}" />
-<br></br>
-<h:outputText value="#{UserSessionBean.getSessionUser()}" />
-<br></br>
-
-
+Vacation Schedule
   <script type="text/javascript">
     var number = 123;
   </script>
-
-
-      the value for number is:
-      <script type="text/javascript">
-        document.write(number)
-      </script>
-
 
 <script type="text/javscript">
 var number = 123;
@@ -44,10 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <h1></h1>
 
 
-<h:outputText value="2+2" />
-<br></br>
-<h:outputText value="{5+2}" />
-<br></br>
 <h:outputText value="First name: #{user.getFirstName()}"
 			styleClass="outputLabel" />
 			<br></br>
@@ -55,7 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			styleClass="outputLabel" />
 			<br></br>
 
-<h:outputText value="daty: #{vacationManager.findAllVacations().isEmpty()}"
+
+<h:outputText value="Period: #{vacation.end.getDate()}"
 			styleClass="outputLabel" />
 
 </h:body>
