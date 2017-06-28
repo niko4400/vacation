@@ -31,5 +31,10 @@
   <managed-bean-class>application.vacation.web.bean.PrintPdf</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>managerView</managed-bean-name>
+  <managed-bean-class>application.vacation.web.bean.ManagerView</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
  <application/>
 </faces-config>

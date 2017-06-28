@@ -17,6 +17,9 @@
 
 <div style="display:none">#{userLoginView.checkSession(true)}</div>
 
+
+
+
 <h:form id="loginForm">
 
 		<p:tabMenu activeIndex="0" style="margin: 0px 0 10px 10px;">
@@ -31,11 +34,26 @@
 			
 		</p:tabMenu>
 		
-		
-  	 	
-			 <p:commandButton value="send" 
-			actionListener="#{mailBean.send()}"
-			/>
+
+     
+     <p:dataTable var="vac" value="#{managerView.vacations}">
+    <p:column headerText="Vacation">
+        <h:outputText value="#{vac.toString()}" />
+    </p:column>
+
+ 
+    <p:column headerText="">
+        <p:commandButton value="approve"
+			actionListener="#{managerView.approve(vac)}" ajax="false" />
+        <p:commandButton value="reject"
+			actionListener="#{managerView.reject(vac)}" ajax="false" />			
+    </p:column>
+    
+</p:dataTable>
+
+     
+	
+			
 
 </h:form>
 

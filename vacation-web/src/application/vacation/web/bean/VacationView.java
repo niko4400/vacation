@@ -112,7 +112,7 @@ public class VacationView {
     			 vacation.setEnd(end); 
     			 System.out.println(vacation.getEnd());
 
-    			 vacation.setState("NO");
+    			 vacation.setState("Awaiting approval");
 
     			 System.out.println(vacation.toString());
   
@@ -138,7 +138,7 @@ public class VacationView {
     			 System.out.println(vacation.getStart());
     			 vacation.setEnd(end); 
     			 System.out.println(vacation.getEnd());
-    			 vacation.setState("NO");
+    			 vacation.setState("Awaiting approval");
     			 
     			 vacationManager.persistVacation(vacation);
     			
