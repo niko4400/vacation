@@ -20,15 +20,14 @@
 
 <h:body>
 <div style="display:none">#{userLoginView.checkSession(true)}</div>
-<h:form id="loginForm" action="EmailSendingServlet" method="post">
+<h:form id="loginForm" action="EmailSendingServlet" method="post" >
 
 		<p:tabMenu activeIndex="0" style="margin: px 0 10px 10px;">
 			<p:menuitem value="Main page" outcome="index.xhtml" />
 			<p:menuitem value="home" outcome="home.xhtml" />
 			<p:menuitem value="vacation" outcome="vacation.xhtml" />
 			<p:menuitem value="manager" outcome="manager.xhtml" />
-			<p:menuitem value="contact" outcome="/EmailForm.xhtml" />	
-			<p:menuitem value="pdf" outcome="toPrint.xhtml" />			
+			<p:menuitem value="contact" outcome="/EmailForm.xhtml" />			
 			<p:menuitem value="sign in" outcome="signIn.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
 			<p:menuitem value="register" outcome="addUser.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
 			
@@ -40,7 +39,7 @@
         <h:outputLabel id="user" value="#{userSessionBean.getSessionUser().getFirstName()}" />
              
         <p:outputLabel for="substitute" value="Substitute" />
-        <p:selectOneMenu id="substitute" value="#{vacationView.substitute}">
+        <p:selectOneMenu id="substitute" value="#{vacationView.substitute}" update=":loginForm1">
       
        
             <f:selectItem itemLabel="Select One" itemValue="" />
@@ -63,16 +62,18 @@
 			actionListener="#{vacationView.create}"
 			update=":loginForm" />
 			
+			
 
-<p:commandButton value="Print" icon="fa fa-print" action="#{printPdf.createPdf()}"
+<p:commandButton value="Print" icon="fa fa-print" action="#{printPdf.createPdf() }"
 				ajax="false" onclick="this.form.target='_blank'"/>
-				  
-
+				  			
+				
+			
        
 </h:panelGrid>		
 
     
-</h:form>
+</h:form >
 
 </h:body> 
 </html>

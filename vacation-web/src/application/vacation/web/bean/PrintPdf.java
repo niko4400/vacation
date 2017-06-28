@@ -16,6 +16,7 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import com.itextpdf.text.pdf.codec.Base64.OutputStream;
 import com.lowagie.text.DocumentException;
+import application.vacation.web.bean.MailBean;
 
 @ManagedBean(name = "printPdf")
 @SessionScoped
@@ -53,6 +54,7 @@ public class PrintPdf implements Serializable {
 		HttpSession session = (HttpSession) externalContext.getSession(true);
 		
 		String url = "http://localhost:8080/vacation-web/navigation/print.xhtml;jsessionid="+session.getId()+"?pdf=true";
+		
 		try{
 			ITextRenderer renderer = new ITextRenderer();		
 			renderer.setDocument(new URL(url).toString());
@@ -63,6 +65,7 @@ public class PrintPdf implements Serializable {
 			response.setHeader("Vacation schedule", "inline; filename=\"VacationSchedule.pdf\"");	
 			ServletOutputStream outputStream = response.getOutputStream();
 			renderer.createPDF(outputStream);
+			
 	}
 		catch(Exception ex){
 			ex.printStackTrace();

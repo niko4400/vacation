@@ -29,7 +29,7 @@ public class EmailSendingServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// reads form fields
-		String recipient = request.getParameter("recipient");
+		String recipient = "dryylo@gmail.com";
 		String subject = request.getParameter("subject");
 		String content = request.getParameter("content");
 

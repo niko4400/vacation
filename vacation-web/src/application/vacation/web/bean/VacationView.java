@@ -34,6 +34,7 @@ public class VacationView {
     List<User> users;
     static Date start;
     static Date end;
+    MailBean mailBean = new MailBean() ;
     
     public void onDateSelect(SelectEvent event) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -110,6 +111,7 @@ public class VacationView {
     public void create(ActionEvent event) {
     	System.out.println("start");
     	String name;
+    	
 
     	vacation  = new Vacation();
 		vacation.setUser(UserSessionBean.getInstance().getSessionUser());
@@ -140,6 +142,7 @@ public class VacationView {
     			 vacationManager.persistVacation(vacation);
     		}
     	}
+    	mailBean.send();
     }
     
     public void create(ActionEvent event,List<User> users) {
