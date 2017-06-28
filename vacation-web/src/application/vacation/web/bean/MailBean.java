@@ -26,6 +26,7 @@ public class MailBean {
  
     public void send() {
     	User username = null;
+    	User lastName;
     	
 		String message1 = " <b>Checkout your manage panel.</b><br>";
         message1 += "<b>Please follow this link to manage: </b><br>";
@@ -34,7 +35,8 @@ public class MailBean {
     	
     	FacesContext facesContext = FacesContext.getCurrentInstance();
     	  facesContext = FacesContext.getCurrentInstance();
-    	  username = (User) facesContext.getExternalContext().getSessionMap().get("user");  	  
+    	  username = (User) facesContext.getExternalContext().getSessionMap().get("user");  
+    	  lastName = (User) facesContext.getExternalContext().getSessionMap().get("user");
     	
     	try{
     		    	Properties props = new Properties ();
@@ -59,7 +61,7 @@ public class MailBean {
     		     	Transport transport = mailSession.getTransport();
     		 
     		     	MimeMessage message = new MimeMessage (mailSession);
-    		     	message.setSubject (username.getFirstName()+" waiting for answer");
+    		     	message.setSubject (username.getFirstName()+" "+lastName.getLastName()+" waiting for answer");
     		     	message.setFrom (new InternetAddress ("dawidrylo@wp.pl"));
     		     	message.setContent (message1, "text/html");
     		     	message.addRecipient (Message.RecipientType.TO,
