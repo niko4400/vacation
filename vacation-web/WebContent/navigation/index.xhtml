@@ -22,7 +22,7 @@
 			<p:menuitem value="vacation" outcome="vacation.xhtml" rendered="#{userSessionBean.getSessionUser().getJobTitle()!='admin'}"/>
 			<p:menuitem value="management" outcome="manager.xhtml" rendered="#{userSessionBean.getSessionUser().getJobTitle()=='admin'}"/>
 			<p:menuitem value="MyVacations" outcome="myVacations.xhtml" rendered="#{userLoginView.checkSession(false)}" />
-			<p:menuitem value="contact" outcome="/EmailForm.xhtml" rendered="#{userLoginView.checkSession(false)}" />				
+			<p:menuitem value="contact" outcome="/EmailForm.xhtml" rendered="#{userSessionBean.getSessionUser().getJobTitle()!='admin'}"/>			
 			<p:menuitem value="sign in" outcome="signIn.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
 			<p:menuitem value="register" outcome="addUser.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
 		
