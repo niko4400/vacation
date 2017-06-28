@@ -56,16 +56,17 @@ public class VacationView {
     }
     
      
-    @PostConstruct
-    public void init() {
-        //users = userManager.findAllUsers();
-    	vacation  = new Vacation();
-		 vacation.setUser(UserSessionBean.getInstance().getSessionUser());
-   	
-   	User user=vacation.getUser();
-    	
-    	users=userManager.findAllUsersExclude(user);
-    }
+	@PostConstruct
+	public void init() {
+		
+		// users = userManager.findAllUsers();
+		vacation = new Vacation();
+		vacation.setUser(UserSessionBean.getInstance().getSessionUser());
+		if (vacation.getUser() != null) {
+			User user = vacation.getUser();
+			users = userManager.findAllUsersExclude(user);
+		}
+	}
  
     public String getSubstitute() {
         return this.substitute;

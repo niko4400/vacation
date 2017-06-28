@@ -8,7 +8,7 @@
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
-	<title>System urlopowy</title>
+	<title>Vacation management system</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link type="text/css" href="styles.css" media="all" />
 </h:head>
@@ -17,7 +17,7 @@
 <div style="display:none">#{userLoginView.checkSession(false)}</div>
 
 <f:metadata>
-    <f:viewParam name="addUser" value="działa" />
+    <f:viewParam name="addUser" value="works" />
 </f:metadata>
 
 <h:form id="loginForm">
@@ -36,36 +36,36 @@
 <h3>Create new account</h3>
     <h:panelGrid columns="3" cellpadding="5" >                   
         <h:outputLabel for="login" value="Login" />        
-        <p:inputText id="login" value="#{userCreateView.login}" required="true" label="login"  requiredMessage="wymagane min. 2 znaki" />
-        <h:outputLabel for="login" value="wymagane min. 2 znaki" /> 
+        <p:inputText id="login" value="#{userCreateView.login}" required="true" label="login"  requiredMessage="at least 2 characters" />
+        <h:outputLabel for="login" value="at least 2 characters" /> 
                  
         
         
         <h:outputLabel for="firstName" value="First name" />
-        <p:inputText id="firstName" value="#{userCreateView.firstName}" required="true" label="firstName" requiredMessage="wymagane min. 2 litery" />
-        <h:outputLabel for="firstName" value="wymagane min. 2 litery" /> 
+        <p:inputText id="firstName" value="#{userCreateView.firstName}" required="true" label="firstName" requiredMessage="at least 2 characters" />
+        <h:outputLabel for="firstName" value="at least 2 characters" /> 
         
         
         <h:outputLabel for="lastName" value="Last Name" />
-        <p:inputText id="lastName" value="#{userCreateView.lastName}" required="true" label="lastName" requiredMessage="wymagane min. 2 litery" />
-        <h:outputLabel for="lastName" value="wymagane min. 2 litery" /> 
+        <p:inputText id="lastName" value="#{userCreateView.lastName}" required="true" label="lastName" requiredMessage="at least 2 characters" />
+        <h:outputLabel for="lastName" value="at least 2 characters" /> 
         
         
         <h:outputLabel for="email" value="Email" />
-        <p:inputText id="email" value="#{userCreateView.email}" required="true" label="email" requiredMessage="format maila to x@hosting.pl"   />
-        <h:outputLabel for="email" value="format maila to x@hosting.pl" /> 
+        <p:inputText id="email" value="#{userCreateView.email}" required="true" label="email" requiredMessage="email format: x@hosting.pl"   />
+        <h:outputLabel for="email" value="email format: x@hosting.pl" /> 
         
         
         <h:outputLabel for="jobTitle" value="Job title" />
-        <p:inputText id="jobTitle" value="#{userCreateView.jobTitle}" required="true" label="jobTitle" requiredMessage="wymagane min. 2 litery"  />
-        <h:outputLabel for="jobTitle" value="wymagane min. 2 litery" /> 
+        <p:inputText id="jobTitle" value="#{userCreateView.jobTitle}" required="true" label="jobTitle" requiredMessage="at least 2 characters"  />
+        <h:outputLabel for="jobTitle" value="at least 2 characters" /> 
         
  
         <h:outputLabel for="password" value="Password" />
         <p:password id="password" value="#{userCreateView.password}" match="passwordTmp" required="true"  label="password"  />
         <p></p>
         
-        <h:outputLabel for="passwordTmp" value="Password match" />
+        <h:outputLabel for="passwordTmp" value="Repeat password" />
         <p:password id="passwordTmp" value="#{userCreateView.password}"  required="true"  label="passwordTmp" />
         <p></p>
 		<p:commandButton value="Create" 
