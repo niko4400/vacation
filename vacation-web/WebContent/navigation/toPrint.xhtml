@@ -3,10 +3,24 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://java.sun.com/jsf/html"> 
+      xmlns:p="http://primefaces.org/ui"
+      > 
 
 <h:head></h:head> 
 <body>
+
+	<p:tabMenu activeIndex="0" style="margin: 0px 0 10px 10px;">
+			<p:menuitem value="Main page" outcome="index.xhtml" />
+			<p:menuitem value="home" outcome="home.xhtml" />
+			<p:menuitem value="vacation" outcome="vacation.xhtml" rendered="#{userSessionBean.getSessionUser().getJobTitle()!='admin'}"/>
+			<p:menuitem value="management" outcome="manager.xhtml" rendered="#{userSessionBean.getSessionUser().getJobTitle()=='admin'}"/>
+			<p:menuitem value="contact" outcome="/EmailForm.xhtml" rendered="#{userLoginView.checkSession(false)}" />	
+			<p:menuitem value="pdf" outcome="toPrint.xhtml" rendered="#{userLoginView.checkSession(false)}" />			
+			<p:menuitem value="sign in" outcome="signIn.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
+			<p:menuitem value="register" outcome="addUser.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
+	</p:tabMenu>
+
+
 
  <h1>PDF generator</h1>
 <h:form>

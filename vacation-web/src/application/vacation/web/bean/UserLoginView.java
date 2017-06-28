@@ -160,10 +160,12 @@ public class UserLoginView implements Serializable {
 			if (i.getLogin().equals(login) && i.getPassword().equals(password)) {
 				System.out.println("haslo z bazy: "+i.getPassword());
 				System.out.println("haslo z formularza " + password);
-				if (i.getJobTitle().equals("admin")) {
 				
-					userSession.setSession(i);
-				}
+				if ((i.getJobTitle()=="admin")||(i.getJobTitle()=="Admin")) {
+					setLoggedAsAdmin(true);
+					//userSession.setSession(i);
+				} else
+					setLoggedAsUser(true);
 
 				userSession.setSession(i);
 				//System.out.println("zalogowany");

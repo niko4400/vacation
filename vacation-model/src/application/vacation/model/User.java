@@ -113,4 +113,9 @@ public class User implements Serializable {
 	public String getEmail(){
 		return this.email;
 	}
+	@Override
+	public String toString(){
+	return this.firstName+" "+this.lastName;
+	}
+	
 }

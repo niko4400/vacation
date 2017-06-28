@@ -107,8 +107,8 @@ public class Vacation implements Serializable {
 	}
 	@Override
 	public String toString(){
-		return this.id+",\n"+getStartDate()+",\n"
-				+getEndDate()+",\n"+this.state;
+		return this.id+",user: "+this.user.toString()+",sub: "+this.substitute.toString()+",start: \n"+getStartDate()+",end: \n"
+				+getEndDate()+",status: \n"+this.state;
 	}
     
 	

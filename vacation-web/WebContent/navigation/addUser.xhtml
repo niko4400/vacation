@@ -25,14 +25,11 @@
 		<p:tabMenu activeIndex="0" style="margin: 0px 0 10px 10px;">
 			<p:menuitem value="Main page" outcome="index.xhtml" />
 			<p:menuitem value="home" outcome="home.xhtml" />
-			<p:menuitem value="vacation" outcome="vacation.xhtml" />
-			<p:menuitem value="manager" outcome="manager.xhtml" />
-			<p:menuitem value="contact" outcome="/EmailForm.xhtml" />	
-			<p:menuitem value="pdf" outcome="toPrint.xhtml" />			
 			<p:menuitem value="sign in" outcome="signIn.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
 			<p:menuitem value="register" outcome="addUser.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
 			
 		</p:tabMenu>
+		
 <h3>Create new account</h3>
     <h:panelGrid columns="3" cellpadding="5" >                   
         <h:outputLabel for="login" value="Login" />        

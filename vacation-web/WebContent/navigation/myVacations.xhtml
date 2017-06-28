@@ -32,22 +32,17 @@
 		</p:tabMenu>
 		
 
-     
+   
      <p:dataTable var="vac" value="#{managerView.vacations}">
-    <p:column headerText="Vacation">
-        <h:outputText value="#{vac.toString()}" />
-    </p:column>
-
- 
-    <p:column headerText="">
-        <p:commandButton value="approve"
-			actionListener="#{managerView.approve(vac)}" ajax="false" />
-        <p:commandButton value="reject"
-			actionListener="#{managerView.reject(vac)}" ajax="false" />			
-    </p:column>
     
-</p:dataTable>
+     <p:column headerText="Vacation">
+     
+         <h:outputText value="#{vac.toString()}" rendered="#{vac.getUser().getFirstName()==userSessionBean.getSessionUser().getFirstName()}"/>
+     </p:column>
 
+    
+	 </p:dataTable>
+    
      
 	
 			

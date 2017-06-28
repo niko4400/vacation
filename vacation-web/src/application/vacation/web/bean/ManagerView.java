@@ -1,6 +1,7 @@
 package application.vacation.web.bean;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -22,11 +23,17 @@ public class ManagerView {
      
 	private Vacation vacation;
     List<Vacation> vacations;
-    
+    List<Vacation> userVacations;
+    UserSessionBean userSessionBean;
+    User user;
     
 	@PostConstruct
-	public void init() throws VacationNotFoundException {
-		vacations=getAllVacations();
+	public void init(){
+		try {			
+			vacations=getAllVacations();
+		} catch (VacationNotFoundException e) {
+			System.err.println("vacation not found");
+		}
 	}
 	
 	public Vacation getVacation(){
@@ -40,6 +47,25 @@ public class ManagerView {
 	}
 	public void setVacation(List<Vacation> vacations){
 		this.vacations=vacations;
+	}
+	
+	//public List<Vacation> getUserVacations(){
+		//return this.userVacations;
+//	}
+	public void setUserVacation(List<Vacation> userVacations){
+		this.userVacations=userVacations;
+	}
+	
+	public List<Vacation> getUserVacations() throws VacationNotFoundException{
+		
+		user=UserSessionBean.getInstance().getSessionUser();
+		
+		for(int i=0;i<vacations.size();i++){
+			if(vacations.get(i).getUser()==user){userVacations.add(vacations.get(i));
+			System.out.print(vacations.get(i));}
+		}
+		
+		return userVacations;
 	}
 	
 	public List<Vacation> getAllVacations() throws VacationNotFoundException{

@@ -14,20 +14,24 @@
 </h:head>
 
 <h:body>
+
 <div style="display:none">#{userLoginView.checkSession(true)}</div>
+
 <h:form id="loginForm">
 
-		<p:tabMenu activeIndex="0" style="margin: px 0 10px 10px;">
+		<p:tabMenu activeIndex="0" style="margin: 0px 0 10px 10px;">
 			<p:menuitem value="Main page" outcome="index.xhtml" />
 			<p:menuitem value="home" outcome="home.xhtml" />
-			<p:menuitem value="vacation" outcome="vacation.xhtml" />
-			<p:menuitem value="manager" outcome="manager.xhtml" />
-			<p:menuitem value="contact" outcome="/EmailForm.xhtml" />	
-			<p:menuitem value="pdf" outcome="toPrint.xhtml" />			
+			<p:menuitem value="vacation" outcome="vacation.xhtml" rendered="#{userSessionBean.getSessionUser().getJobTitle()!='admin'}"/>
+				<p:menuitem value="my vacations" outcome="myVacations.xhtml" rendered="#{userSessionBean.getSessionUser().getJobTitle()!='admin'}"/>
+			<p:menuitem value="management" outcome="manager.xhtml" rendered="#{userSessionBean.getSessionUser().getJobTitle()=='admin'}"/>
+			<p:menuitem value="contact" outcome="/EmailForm.xhtml" rendered="#{userLoginView.checkSession(false)}" />	
+			<p:menuitem value="pdf" outcome="toPrint.xhtml" rendered="#{userLoginView.checkSession(false)}" />			
 			<p:menuitem value="sign in" outcome="signIn.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
 			<p:menuitem value="register" outcome="addUser.xhtml"  rendered="#{!userLoginView.checkSession(false)}" />
-			
+		
 		</p:tabMenu>
+		
 		
 <h3>Add new vacation</h3>
     <h:panelGrid columns="2" cellpadding="5" >                   
