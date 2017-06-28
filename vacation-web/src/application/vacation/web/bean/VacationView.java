@@ -3,6 +3,8 @@ package application.vacation.web.bean;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -27,17 +29,36 @@ public class VacationView {
 	@EJB
 	VacationManager vacationManager;
      
-	private Vacation vacation;
-    private String substitute;
+	public Vacation vacation;
+    static String substitute;
     List<User> users;
-    private Date start;
-    private Date end;
+    static Date start;
+    static Date end;
     
     public void onDateSelect(SelectEvent event) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
     }
+    
+    
+    
+    public String getStringStartDate(){
+    	
+    	Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String s = formatter.format(start);
+    	System.out.println(s.toString());
+    	return s.toString();  	
+    }
+    
+ public String getStringEndDate(){
+    	
+    	Format formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String s = formatter.format(end);
+    	System.out.println(s.toString());
+    	return s.toString();  	
+    }
+ 
     
     public Date getStart() {
         return this.start;

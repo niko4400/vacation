@@ -37,14 +37,14 @@ document.addEventListener('DOMContentLoaded', function() {
 <h:outputText value="Last name: #{user.getLastName()}"
 			styleClass="outputLabel" />
 			<br></br>
+<h:outputText value="Substitute: #{vacationView.getSubstitute()}"
+			styleClass="outputLabel" />
+			<br></br>
 
-
-<h:outputText value="Period: #{vacation.end.getDate()}"
+<h:outputText value="Period: #{vacationView.getStringStartDate()} to #{vacationView.getStringEndDate()} "
 			styleClass="outputLabel" />
 
 </h:body>
-
-		
 
 
 </html>
