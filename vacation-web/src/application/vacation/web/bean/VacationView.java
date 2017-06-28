@@ -58,7 +58,13 @@ public class VacationView {
      
     @PostConstruct
     public void init() {
-        users = userManager.findAllUsers();
+        //users = userManager.findAllUsers();
+    	vacation  = new Vacation();
+		 vacation.setUser(UserSessionBean.getInstance().getSessionUser());
+   	
+   	User user=vacation.getUser();
+    	
+    	users=userManager.findAllUsersExclude(user);
     }
  
     public String getSubstitute() {
@@ -82,15 +88,19 @@ public class VacationView {
     public void create(ActionEvent event) {
     	System.out.println("start");
     	String name;
-    	List<User> users = userManager.findAllUsers();
+
+    	vacation  = new Vacation();
+		vacation.setUser(UserSessionBean.getInstance().getSessionUser());
+    	
+    	User user=vacation.getUser();
+
+    	List<User> users = userManager.findAllUsersExclude(user);
     	for (User i : users) {
     		name =i.getFirstName() + " " + i.getLastName();
     		if(name.equals(substitute)) {
-    			 vacation  = new Vacation();
-    			 vacation.setUser(UserSessionBean.getInstance().getSessionUser());
+    			 
     			 System.out.println(vacation.getUser().getFirstName());
     			 
-    			 User user=vacation.getUser();
     			 
     			 
     			 vacation.setSubstitute(i);
@@ -104,12 +114,8 @@ public class VacationView {
     			 vacation.setState("NO");
 
     			 System.out.println(vacation.toString());
-    			 
-    			 String userName=user.getFirstName() + " " + user.getLastName();
-
-    			 if(userName.equals(substitute))System.out.println("user cannot be substituted by itself");
-    			 else
-    				 vacationManager.persistVacation(vacation);
+  
+    			 vacationManager.persistVacation(vacation);
     		}
     	}
     }
@@ -138,7 +144,7 @@ public class VacationView {
     		}
     	}
     }   
-    
+
 
 	public VacationView() {
 		// TODO Auto-generated constructor stub

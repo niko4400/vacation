@@ -50,6 +50,11 @@ public class DefaultUserManager implements UserManager {
 	}
 	
 	@Override
+	public List<User> findAllUsersExclude(User user) {
+		return userDAO.findAllUsersExclude(user);
+	}
+	
+	@Override
 	public List<User> findUserToLogin(User user) throws UserNotFoundException {
 		List<User> users = userDAO.findAllUsers();
 		if (users == null)

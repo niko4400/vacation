@@ -38,6 +38,13 @@ public class DefaultUserDAO implements UserDAO {
 	public List<User> findAllUsers() {
 		return entityManager.createNamedQuery("User.findAllOrdered").getResultList();
 	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<User> findAllUsersExclude(User user) {
+		
+		return entityManager.createQuery("from User u where u.id!="+user.getId()).getResultList();
+	}
 
 	@Override
 	public User mergeUser(User user) {

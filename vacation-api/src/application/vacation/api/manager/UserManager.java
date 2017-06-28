@@ -10,6 +10,7 @@ import application.vacation.model.User;
 @Remote
 public interface UserManager {
 	List<User> findAllUsers();
+	List<User> findAllUsersExclude(User user);
 	List<User> findUserToLogin(User user) throws UserNotFoundException ;
 	User findUser(Long id) throws UserNotFoundException;
 	User mergeUser(User user);
